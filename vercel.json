@@ -1,8 +1,12 @@
 {
   "rewrites": [
     {
-      "source": "/api/:path*",
-      "destination": "https://api.getfit.lk/api/v1/:path*"
+      "source": "/api/v1/:path*",
+      "destination": "https://get-fit-backend-mpk7.onrender.com/api/v1/:path*"
+    },
+    {
+      "source": "/payment/:path*",
+      "destination": "https://get-fit-backend-mpk7.onrender.com/payment/:path*"
     }
   ]
 }
