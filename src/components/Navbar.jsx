@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Dumbbell, Coffee } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { navLinks } from '../data/siteData';
+import logoImage from '../assets/icon.png';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -24,8 +25,8 @@ const Navbar = () => {
     return (
         <nav
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-                    ? 'bg-[#121212]/95 backdrop-blur-lg shadow-lg shadow-black/20'
-                    : 'bg-transparent'
+                ? 'bg-[#121212]/95 backdrop-blur-lg shadow-lg shadow-black/20'
+                : 'bg-transparent'
                 }`}
             role="navigation"
             aria-label="Main navigation"
@@ -35,13 +36,14 @@ const Navbar = () => {
                     {/* Logo */}
                     <Link
                         to="/"
-                        className="flex items-center gap-2 group"
+                        className="flex items-center gap-3 group"
                         aria-label="Get Fit Home"
                     >
-                        <div className="relative flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-[#00D4FF] to-[#39FF14] group-hover:shadow-lg group-hover:shadow-[#00D4FF]/30 transition-all duration-300">
-                            <Dumbbell className="w-6 h-6 text-[#121212]" />
-                            <Coffee className="w-4 h-4 text-[#121212] absolute bottom-1 right-1" />
-                        </div>
+                        <img
+                            src={logoImage}
+                            alt="Get Fit Logo"
+                            className="w-12 h-12 object-contain rounded-lg group-hover:scale-105 transition-transform duration-300"
+                        />
                         <span className="text-2xl font-bold">
                             <span className="text-white">Get</span>
                             <span className="gradient-text">Fit</span>
@@ -55,8 +57,8 @@ const Navbar = () => {
                                 key={link.path}
                                 to={link.path}
                                 className={`relative text-sm font-medium tracking-wide transition-colors duration-300 ${location.pathname === link.path
-                                        ? 'text-[#00D4FF]'
-                                        : 'text-white/80 hover:text-white'
+                                    ? 'text-[#00D4FF]'
+                                    : 'text-white/80 hover:text-white'
                                     }`}
                             >
                                 {link.name}
@@ -100,8 +102,8 @@ const Navbar = () => {
                                 key={link.path}
                                 to={link.path}
                                 className={`px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 ${location.pathname === link.path
-                                        ? 'bg-[#00D4FF]/10 text-[#00D4FF]'
-                                        : 'text-white/80 hover:bg-white/5 hover:text-white'
+                                    ? 'bg-[#00D4FF]/10 text-[#00D4FF]'
+                                    : 'text-white/80 hover:bg-white/5 hover:text-white'
                                     }`}
                             >
                                 {link.name}

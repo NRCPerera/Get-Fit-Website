@@ -11,6 +11,7 @@ import {
     ArrowUp
 } from 'lucide-react';
 import { businessInfo, navLinks } from '../data/siteData';
+import logoImage from '../assets/icon.png';
 
 const Footer = () => {
     const scrollToTop = () => {
@@ -26,11 +27,12 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
                     {/* Brand */}
                     <div className="lg:col-span-1">
-                        <Link to="/" className="flex items-center gap-2 mb-6">
-                            <div className="relative flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br from-[#00D4FF] to-[#39FF14]">
-                                <Dumbbell className="w-6 h-6 text-[#121212]" />
-                                <Coffee className="w-4 h-4 text-[#121212] absolute bottom-1 right-1" />
-                            </div>
+                        <Link to="/" className="flex items-center gap-3 mb-6">
+                            <img
+                                src={logoImage}
+                                alt="Get Fit Logo"
+                                className="w-12 h-12 object-contain rounded-lg"
+                            />
                             <span className="text-2xl font-bold">
                                 <span className="text-white">Get</span>
                                 <span className="gradient-text">Fit</span>
