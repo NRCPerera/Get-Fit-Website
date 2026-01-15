@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
     Dumbbell,
@@ -6,12 +7,24 @@ import {
     Users,
     Zap,
     ArrowRight,
-    Calendar
+    Calendar,
+    AlertCircle
 } from 'lucide-react';
-import { membershipPlans, fitnessClasses } from '../data/siteData';
+import { membershipPlans, admissionFee, fitnessClasses } from '../data/siteData';
 import './Gym.css';
 
 const Gym = () => {
+    const [activeCategory, setActiveCategory] = useState('1month');
+
+    const categories = [
+        { id: '1month', name: '1 Month' },
+        { id: '3months', name: '3 Months' },
+        { id: 'annual', name: 'Annual' },
+        { id: 'special', name: 'Special' }
+    ];
+
+    const filteredPlans = membershipPlans.filter(plan => plan.category === activeCategory);
+
     return (
         <main>
             {/* Hero Section */}
@@ -84,7 +97,7 @@ const Gym = () => {
                 <div className="membership__container">
                     {/* Section Header */}
                     <div className="membership__header">
-                        <span className="membership__badge">Membership</span>
+                        <span className="membership__badge">Membership Packages</span>
                         <h2 className="membership__title">
                             Choose Your <span className="membership__title-gradient">Plan</span>
                         </h2>
@@ -93,9 +106,30 @@ const Gym = () => {
                         </p>
                     </div>
 
+                    {/* Admission Fee Notice */}
+                    <div className="membership__notice">
+                        <AlertCircle className="membership__notice-icon" />
+                        <span className="membership__notice-text">
+                            <strong>Admission Fee:</strong> {admissionFee.currency} {admissionFee.amount} - {admissionFee.note}
+                        </span>
+                    </div>
+
+                    {/* Category Tabs */}
+                    <div className="membership__tabs">
+                        {categories.map((cat) => (
+                            <button
+                                key={cat.id}
+                                onClick={() => setActiveCategory(cat.id)}
+                                className={`membership__tab ${activeCategory === cat.id ? 'membership__tab--active' : ''}`}
+                            >
+                                {cat.name}
+                            </button>
+                        ))}
+                    </div>
+
                     {/* Plans Grid */}
                     <div className="membership__grid">
-                        {membershipPlans.map((plan) => (
+                        {filteredPlans.map((plan) => (
                             <div
                                 key={plan.id}
                                 className={`plan-card ${plan.popular ? 'plan-card--popular' : 'plan-card--default'}`}
@@ -143,6 +177,13 @@ const Gym = () => {
                                 </Link>
                             </div>
                         ))}
+                    </div>
+
+                    {/* Group Classes Note */}
+                    <div className="membership__footer">
+                        <p className="membership__footer-text">
+                            <strong>"Get Fit for Free"</strong> - Group Classes Focused on Fat Loss included with all memberships!
+                        </p>
                     </div>
                 </div>
             </section>

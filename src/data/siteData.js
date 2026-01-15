@@ -105,10 +105,196 @@ export const testimonials = [
 
 // Membership Plans
 export const membershipPlans = [
+    // 1 Month Plans
     {
         id: 1,
+        name: "1 Month - Male",
+        price: "6,000",
+        currency: "Rs.",
+        period: "month",
+        description: "One month full gym access for males",
+        features: [
+            "Unlimited gym access",
+            "Access to all equipment",
+            "Locker room access",
+            "Free WiFi",
+            "Group fitness classes"
+        ],
+        popular: false,
+        category: "1month"
+    },
+    {
+        id: 2,
+        name: "1 Month - Female",
+        price: "4,500",
+        currency: "Rs.",
+        period: "month",
+        description: "One month full gym access for females",
+        features: [
+            "Unlimited gym access",
+            "Access to all equipment",
+            "Locker room access",
+            "Free WiFi",
+            "Group fitness classes"
+        ],
+        popular: false,
+        category: "1month"
+    },
+    {
+        id: 3,
+        name: "1 Month - Couple",
+        price: "10,000",
+        currency: "Rs.",
+        period: "month",
+        description: "One month full gym access for couples",
+        features: [
+            "Unlimited gym access for 2",
+            "Access to all equipment",
+            "Locker room access",
+            "Free WiFi",
+            "Group fitness classes"
+        ],
+        popular: false,
+        category: "1month"
+    },
+    // 3 Months Plans
+    {
+        id: 4,
+        name: "3 Months - Male",
+        price: "14,000",
+        currency: "Rs.",
+        period: "3 months",
+        description: "Three months full gym access for males",
+        features: [
+            "Unlimited gym access",
+            "All group fitness classes",
+            "Locker with key",
+            "Free parking",
+            "15% off coffee bar",
+            "1 free personal training session"
+        ],
+        popular: true,
+        category: "3months"
+    },
+    {
+        id: 5,
+        name: "3 Months - Female",
+        price: "12,000",
+        currency: "Rs.",
+        period: "3 months",
+        description: "Three months full gym access for females",
+        features: [
+            "Unlimited gym access",
+            "All group fitness classes",
+            "Locker with key",
+            "Free parking",
+            "15% off coffee bar",
+            "1 free personal training session"
+        ],
+        popular: true,
+        category: "3months"
+    },
+    {
+        id: 6,
+        name: "3 Months - Couple",
+        price: "25,000",
+        currency: "Rs.",
+        period: "3 months",
+        description: "Three months full gym access for couples",
+        features: [
+            "Unlimited gym access for 2",
+            "All group fitness classes",
+            "Locker with key",
+            "Free parking",
+            "15% off coffee bar",
+            "2 free personal training sessions"
+        ],
+        popular: true,
+        category: "3months"
+    },
+    // Annual Plans
+    {
+        id: 7,
+        name: "Annual - Male",
+        price: "50,000",
+        currency: "Rs.",
+        period: "year",
+        description: "Full year gym access for males",
+        features: [
+            "Unlimited gym access",
+            "All group fitness classes",
+            "Premium locker",
+            "Free parking",
+            "20% off coffee bar",
+            "Monthly body analysis",
+            "Personalized workout plan"
+        ],
+        popular: false,
+        savings: "Save Rs. 22,000",
+        category: "annual"
+    },
+    {
+        id: 8,
+        name: "Annual - Female",
+        price: "40,000",
+        currency: "Rs.",
+        period: "year",
+        description: "Full year gym access for females",
+        features: [
+            "Unlimited gym access",
+            "All group fitness classes",
+            "Premium locker",
+            "Free parking",
+            "20% off coffee bar",
+            "Monthly body analysis",
+            "Personalized workout plan"
+        ],
+        popular: false,
+        savings: "Save Rs. 14,000",
+        category: "annual"
+    },
+    {
+        id: 9,
+        name: "Annual - Couple",
+        price: "80,000",
+        currency: "Rs.",
+        period: "year",
+        description: "Full year gym access for couples",
+        features: [
+            "Unlimited gym access for 2",
+            "All group fitness classes",
+            "Premium lockers",
+            "Free parking",
+            "20% off coffee bar",
+            "Monthly body analysis",
+            "Personalized workout plans"
+        ],
+        popular: false,
+        savings: "Save Rs. 40,000",
+        category: "annual"
+    },
+    // Special Plans
+    {
+        id: 10,
+        name: "School Children",
+        price: "4,000",
+        currency: "Rs.",
+        period: "month",
+        description: "Special rate for school-going students",
+        features: [
+            "Unlimited gym access",
+            "Access to all equipment",
+            "Supervised training",
+            "Locker room access",
+            "Free WiFi"
+        ],
+        popular: false,
+        category: "special"
+    },
+    {
+        id: 11,
         name: "Day Pass",
-        price: "500",
+        price: "1,500",
         currency: "Rs.",
         period: "day",
         description: "Perfect for visitors or those wanting to try us out",
@@ -119,45 +305,17 @@ export const membershipPlans = [
             "Free WiFi",
             "10% off coffee bar"
         ],
-        popular: false
-    },
-    {
-        id: 2,
-        name: "Monthly Flex",
-        price: "4,500",
-        currency: "Rs.",
-        period: "month",
-        description: "Ideal for dedicated fitness enthusiasts",
-        features: [
-            "Unlimited gym access",
-            "All group fitness classes",
-            "Locker with key",
-            "Free parking",
-            "15% off coffee bar",
-            "1 free personal training session"
-        ],
-        popular: true
-    },
-    {
-        id: 3,
-        name: "Annual Elite",
-        price: "45,000",
-        currency: "Rs.",
-        period: "year",
-        description: "The ultimate commitment to your fitness journey",
-        features: [
-            "Everything in Monthly",
-            "Guest passes (4 per year)",
-            "Priority class booking",
-            "20% off coffee bar",
-            "Monthly body composition analysis",
-            "Personalized workout plan",
-            "Nutrition consultation"
-        ],
         popular: false,
-        savings: "Save Rs. 9,000"
+        category: "special"
     }
 ];
+
+// Admission Fee (Rs. 2,000 per person - one-time fee)
+export const admissionFee = {
+    amount: "2,000",
+    currency: "Rs.",
+    note: "One-time admission fee per person"
+};
 
 // Fitness Classes
 export const fitnessClasses = [
