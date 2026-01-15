@@ -24,6 +24,7 @@
 .privacy-header__container {
     max-width: 1400px;
     margin: 0 auto;
+    text-align: center;
 }
 
 .privacy-header__back {
@@ -34,6 +35,7 @@
     text-decoration: none;
     transition: color 0.3s ease;
     margin-bottom: 2rem;
+    justify-content: center;
 }
 
 .privacy-header__back:hover {
@@ -48,6 +50,7 @@
 .privacy-header__info {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 1rem;
     margin-bottom: 1.5rem;
 }
@@ -110,6 +113,7 @@
 
 .privacy-content__wrapper {
     max-width: 56rem;
+    margin: 0 auto;
 }
 
 /* Privacy Card */
