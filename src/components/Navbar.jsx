@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { navLinks } from '../data/siteData';
 import logoImage from '../assets/icon.png';
+import './Navbar.css';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -24,95 +25,77 @@ const Navbar = () => {
 
     return (
         <nav
-            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-                ? 'bg-[#121212]/95 backdrop-blur-lg shadow-lg shadow-black/20'
-                : 'bg-transparent'
-                }`}
+            className={`navbar ${isScrolled ? 'navbar--scrolled' : 'navbar--transparent'}`}
             role="navigation"
             aria-label="Main navigation"
         >
-            <div className="container-custom">
-                <div className="flex items-center justify-between h-20">
+            <div className="navbar__container">
+                <div className="navbar__content">
                     {/* Logo */}
-                    <Link
-                        to="/"
-                        className="flex items-center gap-3 group"
-                        aria-label="Get Fit Home"
-                    >
+                    <Link to="/" className="navbar__logo" aria-label="Get Fit Home">
                         <img
                             src={logoImage}
                             alt="Get Fit Logo"
-                            className="w-12 h-12 object-contain rounded-lg group-hover:scale-105 transition-transform duration-300"
+                            className="navbar__logo-image"
                         />
-                        <span className="text-2xl font-bold">
-                            <span className="text-white">Get</span>
-                            <span className="gradient-text">Fit</span>
+                        <span className="navbar__logo-text">
+                            <span className="navbar__logo-text--white">Get</span>
+                            <span className="navbar__logo-text--gradient">Fit</span>
                         </span>
                     </Link>
 
                     {/* Desktop Navigation */}
-                    <div className="hidden lg:flex items-center gap-8">
+                    <div className="navbar__nav">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.path}
                                 to={link.path}
-                                className={`relative text-sm font-medium tracking-wide transition-colors duration-300 ${location.pathname === link.path
-                                    ? 'text-[#00D4FF]'
-                                    : 'text-white/80 hover:text-white'
-                                    }`}
+                                className={`navbar__link ${location.pathname === link.path ? 'navbar__link--active' : ''}`}
                             >
                                 {link.name}
                                 {location.pathname === link.path && (
-                                    <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-[#00D4FF] to-[#39FF14] rounded-full" />
+                                    <span className="navbar__link-indicator" />
                                 )}
                             </Link>
                         ))}
                     </div>
 
                     {/* CTA Button & Mobile Toggle */}
-                    <div className="flex items-center gap-4">
-                        <Link
-                            to="/contact"
-                            className="hidden sm:inline-flex btn-primary text-sm px-6 py-3"
-                        >
+                    <div className="navbar__actions">
+                        <Link to="/contact" className="navbar__cta">
                             Join Now
                         </Link>
 
                         <button
                             onClick={() => setIsOpen(!isOpen)}
-                            className="lg:hidden p-2 text-white hover:text-[#00D4FF] transition-colors"
+                            className="navbar__toggle"
                             aria-expanded={isOpen}
                             aria-label={isOpen ? 'Close menu' : 'Open menu'}
                         >
-                            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                            {isOpen ? (
+                                <X className="navbar__toggle-icon" />
+                            ) : (
+                                <Menu className="navbar__toggle-icon" />
+                            )}
                         </button>
                     </div>
                 </div>
             </div>
 
             {/* Mobile Navigation */}
-            <div
-                className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 border-t border-white/10' : 'max-h-0'
-                    }`}
-            >
-                <div className="container-custom py-4 bg-[#121212]/98 backdrop-blur-lg">
-                    <div className="flex flex-col gap-2">
+            <div className={`navbar__mobile ${isOpen ? 'navbar__mobile--open' : 'navbar__mobile--closed'}`}>
+                <div className="navbar__mobile-content">
+                    <div className="navbar__mobile-nav">
                         {navLinks.map((link) => (
                             <Link
                                 key={link.path}
                                 to={link.path}
-                                className={`px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 ${location.pathname === link.path
-                                    ? 'bg-[#00D4FF]/10 text-[#00D4FF]'
-                                    : 'text-white/80 hover:bg-white/5 hover:text-white'
-                                    }`}
+                                className={`navbar__mobile-link ${location.pathname === link.path ? 'navbar__mobile-link--active' : 'navbar__mobile-link--inactive'}`}
                             >
                                 {link.name}
                             </Link>
                         ))}
-                        <Link
-                            to="/contact"
-                            className="btn-primary text-center mt-2"
-                        >
+                        <Link to="/contact" className="navbar__mobile-cta">
                             Join Now
                         </Link>
                     </div>

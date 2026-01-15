@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import {
     MapPin,
     Phone,
@@ -14,6 +13,7 @@ import {
     ChevronRight
 } from 'lucide-react';
 import { businessInfo } from '../data/siteData';
+import './Contact.css';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -32,7 +32,6 @@ const Contact = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Simulate form submission
         setIsSubmitted(true);
         setTimeout(() => {
             setIsSubmitted(false);
@@ -49,23 +48,23 @@ const Contact = () => {
     return (
         <main>
             {/* Hero Section */}
-            <section className="relative min-h-[50vh] flex items-center overflow-hidden pt-20">
+            <section className="contact-hero">
                 {/* Background */}
-                <div className="absolute inset-0">
+                <div className="contact-hero__background">
                     <img
                         src="https://images.unsplash.com/photo-1576678927484-cc907957088c?w=1600&h=900&fit=crop"
                         alt="Get Fit reception"
-                        className="w-full h-full object-cover"
+                        className="contact-hero__image"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#121212]/80 via-[#121212]/70 to-[#121212]" />
+                    <div className="contact-hero__overlay" />
                 </div>
 
                 {/* Content */}
-                <div className="relative container-custom py-20 text-center">
-                    <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-                        Get in <span className="gradient-text">Touch</span>
+                <div className="contact-hero__container">
+                    <h1 className="contact-hero__title">
+                        Get in <span className="contact-hero__title-gradient">Touch</span>
                     </h1>
-                    <p className="text-lg text-white/70 max-w-xl mx-auto">
+                    <p className="contact-hero__subtitle">
                         Ready to start your fitness journey or just want to grab a coffee?
                         We'd love to hear from you.
                     </p>
@@ -73,42 +72,36 @@ const Contact = () => {
             </section>
 
             {/* Contact Info Cards */}
-            <section className="relative -mt-12 z-10 mb-20">
-                <div className="container-custom">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <section className="contact-cards">
+                <div className="contact-cards__container">
+                    <div className="contact-cards__grid">
                         {/* Location */}
-                        <div className="card text-center hover-lift">
-                            <div className="w-16 h-16 rounded-2xl bg-[#00D4FF]/10 flex items-center justify-center mx-auto mb-4">
-                                <MapPin className="w-8 h-8 text-[#00D4FF]" />
+                        <div className="contact-card">
+                            <div className="contact-card__icon-wrapper contact-card__icon-wrapper--primary">
+                                <MapPin className="contact-card__icon contact-card__icon--primary" />
                             </div>
-                            <h3 className="text-lg font-semibold text-white mb-2">Visit Us</h3>
-                            <p className="text-white/60 text-sm">{businessInfo.address}</p>
+                            <h3 className="contact-card__title">Visit Us</h3>
+                            <p className="contact-card__text">{businessInfo.address}</p>
                         </div>
 
                         {/* Phone */}
-                        <div className="card text-center hover-lift">
-                            <div className="w-16 h-16 rounded-2xl bg-[#39FF14]/10 flex items-center justify-center mx-auto mb-4">
-                                <Phone className="w-8 h-8 text-[#39FF14]" />
+                        <div className="contact-card">
+                            <div className="contact-card__icon-wrapper contact-card__icon-wrapper--accent">
+                                <Phone className="contact-card__icon contact-card__icon--accent" />
                             </div>
-                            <h3 className="text-lg font-semibold text-white mb-2">Call Us</h3>
-                            <a
-                                href={`tel:${businessInfo.phone}`}
-                                className="text-white/60 text-sm hover:text-[#39FF14] transition-colors"
-                            >
+                            <h3 className="contact-card__title">Call Us</h3>
+                            <a href={`tel:${businessInfo.phone}`} className="contact-card__link">
                                 {businessInfo.phone}
                             </a>
                         </div>
 
                         {/* Email */}
-                        <div className="card text-center hover-lift">
-                            <div className="w-16 h-16 rounded-2xl bg-[#C8A882]/10 flex items-center justify-center mx-auto mb-4">
-                                <Mail className="w-8 h-8 text-[#C8A882]" />
+                        <div className="contact-card">
+                            <div className="contact-card__icon-wrapper contact-card__icon-wrapper--latte">
+                                <Mail className="contact-card__icon contact-card__icon--latte" />
                             </div>
-                            <h3 className="text-lg font-semibold text-white mb-2">Email Us</h3>
-                            <a
-                                href={`mailto:${businessInfo.email}`}
-                                className="text-white/60 text-sm hover:text-[#C8A882] transition-colors"
-                            >
+                            <h3 className="contact-card__title">Email Us</h3>
+                            <a href={`mailto:${businessInfo.email}`} className="contact-card__link">
                                 {businessInfo.email}
                             </a>
                         </div>
@@ -117,22 +110,20 @@ const Contact = () => {
             </section>
 
             {/* Main Content */}
-            <section className="section-padding pt-0">
-                <div className="container-custom">
-                    <div className="grid lg:grid-cols-2 gap-12">
+            <section className="contact-main">
+                <div className="contact-main__container">
+                    <div className="contact-main__grid">
                         {/* Contact Form */}
                         <div>
-                            <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
-                                Send Us a Message
-                            </h2>
-                            <p className="text-white/60 mb-8">
+                            <h2 className="contact-form__title">Send Us a Message</h2>
+                            <p className="contact-form__subtitle">
                                 Fill out the form below and our team will get back to you within 24 hours.
                             </p>
 
-                            <form onSubmit={handleSubmit} className="space-y-6">
+                            <form onSubmit={handleSubmit} className="contact-form__form">
                                 {/* Name */}
-                                <div>
-                                    <label htmlFor="name" className="block text-sm font-medium text-white/80 mb-2">
+                                <div className="contact-form__group">
+                                    <label htmlFor="name" className="contact-form__label">
                                         Full Name *
                                     </label>
                                     <input
@@ -142,16 +133,16 @@ const Contact = () => {
                                         value={formData.name}
                                         onChange={handleChange}
                                         required
-                                        className="form-input"
+                                        className="contact-form__input"
                                         placeholder="John Doe"
                                         aria-required="true"
                                     />
                                 </div>
 
                                 {/* Email & Phone */}
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                                    <div>
-                                        <label htmlFor="email" className="block text-sm font-medium text-white/80 mb-2">
+                                <div className="contact-form__row">
+                                    <div className="contact-form__group">
+                                        <label htmlFor="email" className="contact-form__label">
                                             Email *
                                         </label>
                                         <input
@@ -161,13 +152,13 @@ const Contact = () => {
                                             value={formData.email}
                                             onChange={handleChange}
                                             required
-                                            className="form-input"
+                                            className="contact-form__input"
                                             placeholder="john@example.com"
                                             aria-required="true"
                                         />
                                     </div>
-                                    <div>
-                                        <label htmlFor="phone" className="block text-sm font-medium text-white/80 mb-2">
+                                    <div className="contact-form__group">
+                                        <label htmlFor="phone" className="contact-form__label">
                                             Phone
                                         </label>
                                         <input
@@ -176,15 +167,15 @@ const Contact = () => {
                                             name="phone"
                                             value={formData.phone}
                                             onChange={handleChange}
-                                            className="form-input"
+                                            className="contact-form__input"
                                             placeholder="076 XXX XXXX"
                                         />
                                     </div>
                                 </div>
 
                                 {/* Subject */}
-                                <div>
-                                    <label htmlFor="subject" className="block text-sm font-medium text-white/80 mb-2">
+                                <div className="contact-form__group">
+                                    <label htmlFor="subject" className="contact-form__label">
                                         I'm Interested In *
                                     </label>
                                     <select
@@ -193,7 +184,7 @@ const Contact = () => {
                                         value={formData.subject}
                                         onChange={handleChange}
                                         required
-                                        className="form-input"
+                                        className="contact-form__select"
                                         aria-required="true"
                                     >
                                         <option value="membership">Gym Membership</option>
@@ -206,8 +197,8 @@ const Contact = () => {
                                 </div>
 
                                 {/* Message */}
-                                <div>
-                                    <label htmlFor="message" className="block text-sm font-medium text-white/80 mb-2">
+                                <div className="contact-form__group">
+                                    <label htmlFor="message" className="contact-form__label">
                                         Message *
                                     </label>
                                     <textarea
@@ -217,7 +208,7 @@ const Contact = () => {
                                         onChange={handleChange}
                                         required
                                         rows={5}
-                                        className="form-input resize-none"
+                                        className="contact-form__textarea"
                                         placeholder="Tell us how we can help..."
                                         aria-required="true"
                                     />
@@ -227,19 +218,16 @@ const Contact = () => {
                                 <button
                                     type="submit"
                                     disabled={isSubmitted}
-                                    className={`w-full py-4 rounded-xl font-semibold text-lg transition-all duration-300 flex items-center justify-center gap-2 ${isSubmitted
-                                            ? 'bg-[#39FF14] text-[#121212]'
-                                            : 'bg-gradient-to-r from-[#00D4FF] to-[#39FF14] text-[#121212] hover:shadow-lg hover:shadow-[#00D4FF]/30'
-                                        }`}
+                                    className={`contact-form__submit ${isSubmitted ? 'contact-form__submit--success' : 'contact-form__submit--default'}`}
                                 >
                                     {isSubmitted ? (
                                         <>
-                                            <Check className="w-5 h-5" />
+                                            <Check className="contact-form__submit-icon" />
                                             Message Sent!
                                         </>
                                     ) : (
                                         <>
-                                            <Send className="w-5 h-5" />
+                                            <Send className="contact-form__submit-icon" />
                                             Send Message
                                         </>
                                     )}
@@ -248,37 +236,34 @@ const Contact = () => {
                         </div>
 
                         {/* Map & Hours */}
-                        <div className="space-y-8">
-                            {/* Map Placeholder */}
-                            <div className="rounded-2xl overflow-hidden border border-white/10">
-                                <div className="relative aspect-[4/3] bg-[#1E293B]">
-                                    {/* Google Maps Embed Placeholder */}
+                        <div className="contact-sidebar">
+                            {/* Map */}
+                            <div className="contact-map">
+                                <div className="contact-map__wrapper">
                                     <iframe
                                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.855!2d79.8836!3d7.1252!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwMDcnMzAuNyJOIDc5wrA1MycwMS4wIkU!5e0!3m2!1sen!2slk!4v1620000000000!5m2!1sen!2slk"
-                                        width="100%"
-                                        height="100%"
-                                        style={{ border: 0, filter: 'invert(0.9) hue-rotate(180deg)' }}
+                                        className="contact-map__iframe"
                                         allowFullScreen=""
                                         loading="lazy"
                                         referrerPolicy="no-referrer-when-downgrade"
                                         title="Get Fit Location Map"
                                         aria-label="Google Maps showing Get Fit location"
-                                    ></iframe>
+                                    />
 
                                     {/* Map Overlay */}
-                                    <div className="absolute bottom-4 left-4 right-4 p-4 rounded-xl glass-effect-dark">
-                                        <div className="flex items-start gap-3">
-                                            <MapPin className="w-5 h-5 text-[#00D4FF] flex-shrink-0 mt-0.5" />
+                                    <div className="contact-map__overlay">
+                                        <div className="contact-map__info">
+                                            <MapPin className="contact-map__icon" />
                                             <div>
-                                                <p className="text-white font-medium text-sm">{businessInfo.address}</p>
+                                                <p className="contact-map__address">{businessInfo.address}</p>
                                                 <a
                                                     href="https://maps.google.com/?q=Puttalam+-+Colombo+Rd,+Seeduwa+11410"
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="text-[#00D4FF] text-xs inline-flex items-center gap-1 mt-1 hover:underline"
+                                                    className="contact-map__link"
                                                 >
                                                     Get Directions
-                                                    <ChevronRight className="w-3 h-3" />
+                                                    <ChevronRight className="contact-map__link-icon" />
                                                 </a>
                                             </div>
                                         </div>
@@ -287,58 +272,58 @@ const Contact = () => {
                             </div>
 
                             {/* Opening Hours */}
-                            <div className="card">
-                                <h3 className="text-xl font-semibold text-white mb-6 flex items-center gap-3">
-                                    <Clock className="w-6 h-6 text-[#00D4FF]" />
+                            <div className="contact-hours">
+                                <h3 className="contact-hours__title">
+                                    <Clock className="contact-hours__title-icon" />
                                     Opening Hours
                                 </h3>
 
-                                <div className="space-y-4">
-                                    <div className="flex items-center justify-between p-4 rounded-xl bg-white/5">
-                                        <div className="flex items-center gap-3">
-                                            <Dumbbell className="w-5 h-5 text-[#00D4FF]" />
-                                            <span className="text-white font-medium">The Gym</span>
+                                <div className="contact-hours__list">
+                                    <div className="contact-hours__item">
+                                        <div className="contact-hours__label">
+                                            <Dumbbell className="contact-hours__label-icon contact-hours__label-icon--primary" />
+                                            <span className="contact-hours__label-text">The Gym</span>
                                         </div>
-                                        <span className="text-white/70 text-sm">{businessInfo.hours.gym}</span>
+                                        <span className="contact-hours__time">{businessInfo.hours.gym}</span>
                                     </div>
 
-                                    <div className="flex items-center justify-between p-4 rounded-xl bg-white/5">
-                                        <div className="flex items-center gap-3">
-                                            <Coffee className="w-5 h-5 text-[#C8A882]" />
-                                            <span className="text-white font-medium">Coffee Bar</span>
+                                    <div className="contact-hours__item">
+                                        <div className="contact-hours__label">
+                                            <Coffee className="contact-hours__label-icon contact-hours__label-icon--latte" />
+                                            <span className="contact-hours__label-text">Coffee Bar</span>
                                         </div>
-                                        <span className="text-white/70 text-sm">{businessInfo.hours.coffeeBar}</span>
+                                        <span className="contact-hours__time">{businessInfo.hours.coffeeBar}</span>
                                     </div>
                                 </div>
 
-                                <p className="text-white/50 text-sm mt-6">
+                                <p className="contact-hours__note">
                                     * Hours may vary on public holidays. Follow us on social media for updates.
                                 </p>
                             </div>
 
                             {/* Social Links */}
-                            <div className="card">
-                                <h3 className="text-xl font-semibold text-white mb-6">Follow Us</h3>
-                                <div className="flex items-center gap-4">
+                            <div className="contact-social">
+                                <h3 className="contact-social__title">Follow Us</h3>
+                                <div className="contact-social__links">
                                     <a
                                         href={businessInfo.socials.instagram}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="flex items-center gap-3 px-5 py-3 rounded-xl bg-white/5 hover:bg-[#00D4FF]/10 hover:text-[#00D4FF] text-white/70 transition-all duration-300"
+                                        className="contact-social__link"
                                         aria-label="Follow us on Instagram"
                                     >
-                                        <Instagram className="w-5 h-5" />
-                                        <span className="text-sm font-medium">Instagram</span>
+                                        <Instagram className="contact-social__link-icon" />
+                                        <span className="contact-social__link-text">Instagram</span>
                                     </a>
                                     <a
                                         href={businessInfo.socials.facebook}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="flex items-center gap-3 px-5 py-3 rounded-xl bg-white/5 hover:bg-[#00D4FF]/10 hover:text-[#00D4FF] text-white/70 transition-all duration-300"
+                                        className="contact-social__link"
                                         aria-label="Follow us on Facebook"
                                     >
-                                        <Facebook className="w-5 h-5" />
-                                        <span className="text-sm font-medium">Facebook</span>
+                                        <Facebook className="contact-social__link-icon" />
+                                        <span className="contact-social__link-text">Facebook</span>
                                     </a>
                                 </div>
                             </div>
@@ -348,18 +333,16 @@ const Contact = () => {
             </section>
 
             {/* FAQ Preview */}
-            <section className="section-padding bg-[#0a0a0a]">
-                <div className="container-custom">
-                    <div className="text-center max-w-2xl mx-auto mb-12">
-                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                            Frequently Asked Questions
-                        </h2>
-                        <p className="text-white/60">
+            <section className="faq-section">
+                <div className="faq-section__container">
+                    <div className="faq-section__header">
+                        <h2 className="faq-section__title">Frequently Asked Questions</h2>
+                        <p className="faq-section__subtitle">
                             Quick answers to common questions about Get Fit.
                         </p>
                     </div>
 
-                    <div className="max-w-3xl mx-auto space-y-4">
+                    <div className="faq-section__list">
                         {[
                             {
                                 q: 'Do I need a membership to use the coffee bar?',
@@ -378,17 +361,12 @@ const Contact = () => {
                                 a: 'Yes, we have certified personal trainers available. Personal training sessions can be booked separately or are included with certain membership packages.'
                             }
                         ].map((faq, index) => (
-                            <details
-                                key={index}
-                                className="group card cursor-pointer"
-                            >
-                                <summary className="flex items-center justify-between text-white font-medium list-none">
+                            <details key={index} className="faq-item">
+                                <summary className="faq-item__summary">
                                     {faq.q}
-                                    <ChevronRight className="w-5 h-5 text-[#00D4FF] group-open:rotate-90 transition-transform" />
+                                    <ChevronRight className="faq-item__icon" />
                                 </summary>
-                                <p className="mt-4 text-white/60 text-sm leading-relaxed">
-                                    {faq.a}
-                                </p>
+                                <p className="faq-item__answer">{faq.a}</p>
                             </details>
                         ))}
                     </div>

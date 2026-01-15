@@ -7,6 +7,7 @@ import Gym from './pages/Gym';
 import CoffeeBar from './pages/CoffeeBar';
 import Contact from './pages/Contact';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import './App.css';
 
 // Scroll to top on route change
 function ScrollToTop() {
@@ -21,7 +22,7 @@ function ScrollToTop() {
 
 function App() {
   return (
-    <div className="min-h-screen bg-[#121212] text-white">
+    <div className="app">
       <ScrollToTop />
       <Navbar />
       <Routes>

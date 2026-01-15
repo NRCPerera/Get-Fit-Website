@@ -6,46 +6,46 @@ import {
     Users,
     Zap,
     ArrowRight,
-    Star,
     Calendar
 } from 'lucide-react';
 import { membershipPlans, fitnessClasses } from '../data/siteData';
+import './Gym.css';
 
 const Gym = () => {
     return (
         <main>
             {/* Hero Section */}
-            <section className="relative min-h-[60vh] flex items-center overflow-hidden pt-20">
+            <section className="gym-hero">
                 {/* Background */}
-                <div className="absolute inset-0">
+                <div className="gym-hero__background">
                     <img
                         src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1600&h=900&fit=crop"
                         alt="Get Fit Gym interior"
-                        className="w-full h-full object-cover"
+                        className="gym-hero__image"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-[#121212]/80 via-[#121212]/70 to-[#121212]" />
+                    <div className="gym-hero__overlay" />
                 </div>
 
                 {/* Content */}
-                <div className="relative container-custom py-20">
-                    <div className="max-w-3xl">
-                        <div className="flex items-center gap-2 text-[#00D4FF] mb-4">
-                            <Dumbbell className="w-5 h-5" />
-                            <span className="text-sm font-medium uppercase tracking-wider">The Gym</span>
+                <div className="gym-hero__container">
+                    <div className="gym-hero__content">
+                        <div className="gym-hero__label">
+                            <Dumbbell className="gym-hero__label-icon" />
+                            <span className="gym-hero__label-text">The Gym</span>
                         </div>
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-                            Train Harder, <span className="gradient-text">Get Stronger</span>
+                        <h1 className="gym-hero__title">
+                            Train Harder, <span className="gym-hero__title-gradient">Get Stronger</span>
                         </h1>
-                        <p className="text-lg text-white/70 mb-8 max-w-xl">
+                        <p className="gym-hero__description">
                             State-of-the-art equipment, expert trainers, and an energizing atmosphere.
                             Everything you need to crush your fitness goals.
                         </p>
-                        <div className="flex flex-wrap gap-4">
-                            <a href="#membership" className="btn-primary">
+                        <div className="gym-hero__buttons">
+                            <a href="#membership" className="gym-hero__cta-primary">
                                 View Membership Plans
-                                <ArrowRight className="w-4 h-4" />
+                                <ArrowRight className="gym-hero__cta-icon" />
                             </a>
-                            <a href="#classes" className="btn-secondary">
+                            <a href="#classes" className="gym-hero__cta-secondary">
                                 Explore Classes
                             </a>
                         </div>
@@ -54,25 +54,25 @@ const Gym = () => {
             </section>
 
             {/* Stats Bar */}
-            <section className="relative -mt-12 z-10">
-                <div className="container-custom">
-                    <div className="glass-effect-dark rounded-2xl p-6 md:p-8">
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-                            <div className="text-center">
-                                <div className="text-3xl md:text-4xl font-bold gradient-text mb-1">50+</div>
-                                <div className="text-sm text-white/60">Modern Equipment</div>
+            <section className="gym-stats">
+                <div className="gym-stats__container">
+                    <div className="gym-stats__card">
+                        <div className="gym-stats__grid">
+                            <div className="gym-stats__item">
+                                <div className="gym-stats__value">50+</div>
+                                <div className="gym-stats__label">Modern Equipment</div>
                             </div>
-                            <div className="text-center">
-                                <div className="text-3xl md:text-4xl font-bold gradient-text mb-1">6</div>
-                                <div className="text-sm text-white/60">Expert Trainers</div>
+                            <div className="gym-stats__item">
+                                <div className="gym-stats__value">6</div>
+                                <div className="gym-stats__label">Expert Trainers</div>
                             </div>
-                            <div className="text-center">
-                                <div className="text-3xl md:text-4xl font-bold gradient-text mb-1">18</div>
-                                <div className="text-sm text-white/60">Hours Open Daily</div>
+                            <div className="gym-stats__item">
+                                <div className="gym-stats__value">18</div>
+                                <div className="gym-stats__label">Hours Open Daily</div>
                             </div>
-                            <div className="text-center">
-                                <div className="text-3xl md:text-4xl font-bold gradient-text mb-1">4</div>
-                                <div className="text-sm text-white/60">Training Zones</div>
+                            <div className="gym-stats__item">
+                                <div className="gym-stats__value">4</div>
+                                <div className="gym-stats__label">Training Zones</div>
                             </div>
                         </div>
                     </div>
@@ -80,63 +80,55 @@ const Gym = () => {
             </section>
 
             {/* Membership Plans */}
-            <section id="membership" className="section-padding">
-                <div className="container-custom">
+            <section id="membership" className="membership">
+                <div className="membership__container">
                     {/* Section Header */}
-                    <div className="text-center max-w-2xl mx-auto mb-16">
-                        <span className="inline-block px-4 py-2 rounded-full bg-[#00D4FF]/10 text-[#00D4FF] text-sm font-medium mb-4">
-                            Membership
-                        </span>
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-                            Choose Your <span className="gradient-text">Plan</span>
+                    <div className="membership__header">
+                        <span className="membership__badge">Membership</span>
+                        <h2 className="membership__title">
+                            Choose Your <span className="membership__title-gradient">Plan</span>
                         </h2>
-                        <p className="text-white/60">
+                        <p className="membership__subtitle">
                             Flexible options to fit your lifestyle and fitness goals. All plans include access to our premium facilities.
                         </p>
                     </div>
 
                     {/* Plans Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+                    <div className="membership__grid">
                         {membershipPlans.map((plan) => (
                             <div
                                 key={plan.id}
-                                className={`relative rounded-3xl p-8 transition-all duration-300 hover:-translate-y-2 ${plan.popular
-                                        ? 'bg-gradient-to-b from-[#00D4FF]/20 to-[#39FF14]/10 border-2 border-[#00D4FF]/50'
-                                        : 'bg-white/5 border border-white/10 hover:border-white/20'
-                                    }`}
+                                className={`plan-card ${plan.popular ? 'plan-card--popular' : 'plan-card--default'}`}
                             >
                                 {/* Popular Badge */}
                                 {plan.popular && (
-                                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-[#00D4FF] to-[#39FF14] text-[#121212] text-sm font-semibold">
-                                        Most Popular
-                                    </div>
+                                    <div className="plan-card__popular-badge">Most Popular</div>
                                 )}
 
                                 {/* Savings Badge */}
                                 {plan.savings && (
-                                    <div className="absolute -top-4 right-4 px-3 py-1 rounded-full bg-[#39FF14]/20 text-[#39FF14] text-xs font-medium">
-                                        {plan.savings}
-                                    </div>
+                                    <div className="plan-card__savings-badge">{plan.savings}</div>
                                 )}
 
                                 {/* Plan Header */}
-                                <div className="mb-8">
-                                    <h3 className="text-xl font-semibold text-white mb-2">{plan.name}</h3>
-                                    <p className="text-sm text-white/60 mb-4">{plan.description}</p>
-                                    <div className="flex items-baseline gap-2">
-                                        <span className="text-white/60 text-lg">{plan.currency}</span>
-                                        <span className="text-4xl font-bold text-white">{plan.price}</span>
-                                        <span className="text-white/60">/{plan.period}</span>
+                                <div className="plan-card__header">
+                                    <h3 className="plan-card__name">{plan.name}</h3>
+                                    <p className="plan-card__description">{plan.description}</p>
+                                    <div className="plan-card__price">
+                                        <span className="plan-card__currency">{plan.currency}</span>
+                                        <span className="plan-card__amount">{plan.price}</span>
+                                        <span className="plan-card__period">/{plan.period}</span>
                                     </div>
                                 </div>
 
                                 {/* Features */}
-                                <ul className="space-y-3 mb-8">
+                                <ul className="plan-card__features">
                                     {plan.features.map((feature, index) => (
-                                        <li key={index} className="flex items-start gap-3">
-                                            <Check className={`w-5 h-5 flex-shrink-0 mt-0.5 ${plan.popular ? 'text-[#00D4FF]' : 'text-[#39FF14]'
-                                                }`} />
-                                            <span className="text-sm text-white/80">{feature}</span>
+                                        <li key={index} className="plan-card__feature">
+                                            <Check
+                                                className={`plan-card__feature-icon ${plan.popular ? 'plan-card__feature-icon--primary' : 'plan-card__feature-icon--accent'}`}
+                                            />
+                                            <span className="plan-card__feature-text">{feature}</span>
                                         </li>
                                     ))}
                                 </ul>
@@ -144,13 +136,10 @@ const Gym = () => {
                                 {/* CTA */}
                                 <Link
                                     to="/contact"
-                                    className={`w-full py-3 rounded-xl font-semibold text-center transition-all duration-300 flex items-center justify-center gap-2 ${plan.popular
-                                            ? 'bg-gradient-to-r from-[#00D4FF] to-[#39FF14] text-[#121212] hover:shadow-lg hover:shadow-[#00D4FF]/30'
-                                            : 'bg-white/10 text-white hover:bg-white/20'
-                                        }`}
+                                    className={`plan-card__cta ${plan.popular ? 'plan-card__cta--primary' : 'plan-card__cta--secondary'}`}
                                 >
                                     Get Started
-                                    <ArrowRight className="w-4 h-4" />
+                                    <ArrowRight className="plan-card__cta-icon" />
                                 </Link>
                             </div>
                         ))}
@@ -159,66 +148,57 @@ const Gym = () => {
             </section>
 
             {/* Classes Section */}
-            <section id="classes" className="section-padding bg-[#0a0a0a]">
-                <div className="container-custom">
+            <section id="classes" className="classes">
+                <div className="classes__container">
                     {/* Section Header */}
-                    <div className="text-center max-w-2xl mx-auto mb-16">
-                        <span className="inline-block px-4 py-2 rounded-full bg-[#39FF14]/10 text-[#39FF14] text-sm font-medium mb-4">
-                            Group Classes
-                        </span>
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
-                            Train With the <span className="gradient-text">Best</span>
+                    <div className="classes__header">
+                        <span className="classes__badge">Group Classes</span>
+                        <h2 className="classes__title">
+                            Train With the <span className="classes__title-gradient">Best</span>
                         </h2>
-                        <p className="text-white/60">
+                        <p className="classes__subtitle">
                             Join our dynamic group classes led by certified instructors. All classes are included with Monthly and Annual memberships.
                         </p>
                     </div>
 
                     {/* Classes Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="classes__grid">
                         {fitnessClasses.map((cls) => (
-                            <div
-                                key={cls.id}
-                                className="group relative overflow-hidden rounded-2xl bg-white/5 border border-white/10 hover:border-[#00D4FF]/30 transition-all duration-300"
-                            >
-                                <div className="flex flex-col lg:flex-row">
+                            <div key={cls.id} className="class-card">
+                                <div className="class-card__layout">
                                     {/* Image */}
-                                    <div className="relative lg:w-2/5 aspect-video lg:aspect-auto overflow-hidden">
+                                    <div className="class-card__image-wrapper">
                                         <img
                                             src={cls.image}
                                             alt={cls.name}
-                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                            className="class-card__image"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-[#0a0a0a] via-transparent to-transparent" />
-                                        <div className="absolute top-4 left-4 px-3 py-1 rounded-full bg-[#00D4FF]/20 backdrop-blur-sm text-[#00D4FF] text-xs font-medium">
-                                            {cls.level}
-                                        </div>
+                                        <div className="class-card__overlay" />
+                                        <div className="class-card__level">{cls.level}</div>
                                     </div>
 
                                     {/* Content */}
-                                    <div className="lg:w-3/5 p-6">
-                                        <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#00D4FF] transition-colors">
-                                            {cls.name}
-                                        </h3>
-                                        <p className="text-sm text-white/60 mb-4">{cls.description}</p>
+                                    <div className="class-card__content">
+                                        <h3 className="class-card__name">{cls.name}</h3>
+                                        <p className="class-card__description">{cls.description}</p>
 
-                                        <div className="flex flex-wrap gap-4 mb-4">
-                                            <div className="flex items-center gap-2 text-white/70">
-                                                <Users className="w-4 h-4" />
-                                                <span className="text-sm">{cls.instructor}</span>
+                                        <div className="class-card__meta">
+                                            <div className="class-card__meta-item">
+                                                <Users className="class-card__meta-icon" />
+                                                <span className="class-card__meta-text">{cls.instructor}</span>
                                             </div>
-                                            <div className="flex items-center gap-2 text-white/70">
-                                                <Clock className="w-4 h-4" />
-                                                <span className="text-sm">{cls.duration}</span>
+                                            <div className="class-card__meta-item">
+                                                <Clock className="class-card__meta-icon" />
+                                                <span className="class-card__meta-text">{cls.duration}</span>
                                             </div>
                                         </div>
 
-                                        <div className="flex items-center justify-between">
-                                            <div className="flex items-center gap-2 text-[#39FF14]">
-                                                <Calendar className="w-4 h-4" />
-                                                <span className="text-sm">{cls.schedule}</span>
+                                        <div className="class-card__footer">
+                                            <div className="class-card__schedule">
+                                                <Calendar className="class-card__schedule-icon" />
+                                                <span className="class-card__schedule-text">{cls.schedule}</span>
                                             </div>
-                                            <div className="text-xs text-white/50">{cls.spots} spots</div>
+                                            <div className="class-card__spots">{cls.spots} spots</div>
                                         </div>
                                     </div>
                                 </div>
@@ -227,11 +207,11 @@ const Gym = () => {
                     </div>
 
                     {/* Bottom CTA */}
-                    <div className="text-center mt-12">
-                        <p className="text-white/60 mb-4">
+                    <div className="classes__cta">
+                        <p className="classes__cta-text">
                             Can't find a class that fits your schedule?
                         </p>
-                        <Link to="/contact" className="btn-secondary">
+                        <Link to="/contact" className="classes__cta-button">
                             Request a Custom Session
                         </Link>
                     </div>
@@ -239,35 +219,33 @@ const Gym = () => {
             </section>
 
             {/* Facilities Section */}
-            <section className="section-padding">
-                <div className="container-custom">
-                    <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <section className="facilities">
+                <div className="facilities__container">
+                    <div className="facilities__grid">
                         {/* Content */}
                         <div>
-                            <span className="inline-block px-4 py-2 rounded-full bg-[#00D4FF]/10 text-[#00D4FF] text-sm font-medium mb-4">
-                                Our Facilities
-                            </span>
-                            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-                                Premium Equipment for <span className="gradient-text">Premium Results</span>
+                            <span className="facilities__badge">Our Facilities</span>
+                            <h2 className="facilities__title">
+                                Premium Equipment for <span className="facilities__title-gradient">Premium Results</span>
                             </h2>
-                            <p className="text-white/60 mb-8">
+                            <p className="facilities__description">
                                 Our gym features the latest equipment from leading fitness brands, maintained to the highest standards for your safety and performance.
                             </p>
 
-                            <div className="space-y-4">
+                            <div className="facilities__list">
                                 {[
                                     { title: 'Cardio Zone', desc: 'Treadmills, ellipticals, bikes with integrated entertainment' },
                                     { title: 'Free Weights Area', desc: 'Dumbbells up to 50kg, barbells, and squat racks' },
                                     { title: 'Functional Training', desc: 'Kettlebells, battle ropes, TRX, and plyometric boxes' },
                                     { title: 'Stretching & Recovery', desc: 'Foam rollers, yoga mats, and massage chairs' }
                                 ].map((item, index) => (
-                                    <div key={index} className="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
-                                        <div className="w-10 h-10 rounded-lg bg-[#00D4FF]/10 flex items-center justify-center flex-shrink-0">
-                                            <Zap className="w-5 h-5 text-[#00D4FF]" />
+                                    <div key={index} className="facilities__item">
+                                        <div className="facilities__item-icon-wrapper">
+                                            <Zap className="facilities__item-icon" />
                                         </div>
                                         <div>
-                                            <h4 className="text-white font-medium mb-1">{item.title}</h4>
-                                            <p className="text-sm text-white/60">{item.desc}</p>
+                                            <h4 className="facilities__item-title">{item.title}</h4>
+                                            <p className="facilities__item-text">{item.desc}</p>
                                         </div>
                                     </div>
                                 ))}
@@ -275,36 +253,36 @@ const Gym = () => {
                         </div>
 
                         {/* Image Grid */}
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="space-y-4">
-                                <div className="rounded-2xl overflow-hidden aspect-[4/5]">
+                        <div className="facilities__images">
+                            <div className="facilities__image-col">
+                                <div className="facilities__image-wrapper facilities__image-wrapper--portrait">
                                     <img
                                         src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=400&h=500&fit=crop"
                                         alt="Gym cardio zone"
-                                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                                        className="facilities__image"
                                     />
                                 </div>
-                                <div className="rounded-2xl overflow-hidden aspect-square">
+                                <div className="facilities__image-wrapper facilities__image-wrapper--square">
                                     <img
                                         src="https://images.unsplash.com/photo-1517963879433-6ad2b056d712?w=400&h=400&fit=crop"
                                         alt="Free weights"
-                                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                                        className="facilities__image"
                                     />
                                 </div>
                             </div>
-                            <div className="space-y-4 pt-8">
-                                <div className="rounded-2xl overflow-hidden aspect-square">
+                            <div className="facilities__image-col facilities__image-col--offset">
+                                <div className="facilities__image-wrapper facilities__image-wrapper--square">
                                     <img
                                         src="https://images.unsplash.com/photo-1598971639058-60b5c63f1f17?w=400&h=400&fit=crop"
                                         alt="Training area"
-                                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                                        className="facilities__image"
                                     />
                                 </div>
-                                <div className="rounded-2xl overflow-hidden aspect-[4/5]">
+                                <div className="facilities__image-wrapper facilities__image-wrapper--portrait">
                                     <img
                                         src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=400&h=500&fit=crop"
                                         alt="Gym equipment"
-                                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                                        className="facilities__image"
                                     />
                                 </div>
                             </div>
@@ -314,15 +292,13 @@ const Gym = () => {
             </section>
 
             {/* CTA */}
-            <section className="section-padding bg-gradient-to-r from-[#00D4FF]/10 to-[#39FF14]/10 border-t border-b border-white/10">
-                <div className="container-custom text-center">
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                        Ready to Transform Your Body?
-                    </h2>
-                    <p className="text-white/60 mb-8 max-w-xl mx-auto">
+            <section className="gym-cta">
+                <div className="gym-cta__container">
+                    <h2 className="gym-cta__title">Ready to Transform Your Body?</h2>
+                    <p className="gym-cta__text">
                         Join Get Fit today and start your journey to a healthier, stronger you. First-timers get a free consultation!
                     </p>
-                    <Link to="/contact" className="btn-primary text-lg px-8 py-4">
+                    <Link to="/contact" className="gym-cta__button">
                         Start Your Free Trial
                     </Link>
                 </div>
