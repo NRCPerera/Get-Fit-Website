@@ -44,11 +44,10 @@ const RefundPolicy = () => {
 
                         {/* Returns */}
                         <div className="refund-card">
-                            <h2 className="refund-card__title">Returns</h2>
+                            <h2 className="refund-card__title">Cancellations</h2>
                             <p className="refund-card__text">
-                                We accept returns within 7 days from the date of purchase. To be eligible for a return,
-                                your item must be unused and in the same condition that you received it. It must also be
-                                in the original packaging.
+                                We accept cancellation requests within 7 days from the date of purchase, provided that the 
+                                membership, service, or package has not yet been activated or used.
                             </p>
                         </div>
 
@@ -56,66 +55,34 @@ const RefundPolicy = () => {
                         <div className="refund-card">
                             <h2 className="refund-card__title">Refunds</h2>
                             <p className="refund-card__text">
-                                Once we receive your return and inspect the item, we will notify you of the status of your
-                                refund. If your return is approved, we will initiate a refund to your original method of
-                                payment. Please note that the refund amount will exclude any shipping charges incurred
-                                during the initial purchase.
-                            </p>
-                        </div>
-
-                        {/* Exchanges */}
-                        <div className="refund-card">
-                            <h2 className="refund-card__title">Exchanges</h2>
-                            <p className="refund-card__text">
-                                If you would like to exchange your item for a different size, color, or style, please contact
-                                our customer support team within 7 days of receiving your order. We will provide you with
-                                further instructions on how to proceed with the exchange.
+                                Once we receive your cancellation request and verify the status of your service
+                                usage, we will notify you of the approval or rejection of your refund.
+                                If your refund is approved, the refund will be strictly issued to the payment-initiated
+                                media itself (the original payment method used during the purchase). We are unable to
+                                process refunds to third-party accounts or via cash.
                             </p>
                         </div>
 
                         {/* Non-Returnable Items */}
                         <div className="refund-card">
-                            <h2 className="refund-card__title">Non-Returnable Items</h2>
+                            <h2 className="refund-card__title">Non-Refundable Services</h2>
                             <p className="refund-card__text">
-                                Certain items are non-returnable and non-refundable. These include:
+                                Certain services are non-refundable once the service period has commenced or the product has been accessed. These include:
                             </p>
                             <ul className="refund-card__list">
-                                <li className="refund-card__list-item">Gift cards</li>
-                                <li className="refund-card__list-item">Downloadable software products</li>
-                                <li className="refund-card__list-item">Personalized or custom-made items</li>
-                                <li className="refund-card__list-item">Perishable goods (food and beverages)</li>
-                                <li className="refund-card__list-item">Gym membership fees (after use)</li>
-                                <li className="refund-card__list-item">Personal training sessions (after completion)</li>
+                                <li className="refund-card__list-item">Gym membership fees</li>
+                                <li className="refund-card__list-item">Personal training sessions</li>
+                                <li className="refund-card__list-item">Downloadable software products or digital guides once downloaded.</li>
                             </ul>
                         </div>
 
                         {/* Damaged or Defective Items */}
                         <div className="refund-card">
-                            <h2 className="refund-card__title">Damaged or Defective Items</h2>
-                            <p className="refund-card__text">
-                                In the unfortunate event that your item arrives damaged or defective, please contact us
-                                immediately. We will arrange for a replacement or issue a refund, depending on your
-                                preference and product availability.
-                            </p>
-                        </div>
-
-                        {/* Return Shipping */}
-                        <div className="refund-card">
-                            <h2 className="refund-card__title">Return Shipping</h2>
-                            <p className="refund-card__text">
-                                You will be responsible for paying the shipping costs for returning your item unless the
-                                return is due to our error (e.g., wrong item shipped, defective product). In such cases,
-                                we will provide you with a prepaid shipping label.
-                            </p>
-                        </div>
-
-                        {/* Processing Time */}
-                        <div className="refund-card">
                             <h2 className="refund-card__title">Processing Time</h2>
                             <p className="refund-card__text">
-                                Refunds and exchanges will be processed within 5-7 business days after we receive your
-                                returned item. Please note that it may take additional time for the refund to appear in
-                                your account, depending on your payment provider.
+                                Refunds will be processed within 5-7 business days after approval. Please
+                                note that it may take additional time for the refund to appear in your bank account or card
+                                statement, depending on your payment provider’s processing times.
                             </p>
                         </div>
 
