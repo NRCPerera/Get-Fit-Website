@@ -1,33 +1,33 @@
-/* Privacy Policy Page Styles */
+/* Refund Policy Page Styles */
 
-.privacy {
+.refund {
     padding-top: 5rem;
 }
 
 /* Header Section */
-.privacy-header {
+.refund-header {
     padding: 5rem 1rem 2rem;
 }
 
 @media (min-width: 768px) {
-    .privacy-header {
+    .refund-header {
         padding: 6rem 2rem 2rem;
     }
 }
 
 @media (min-width: 1024px) {
-    .privacy-header {
+    .refund-header {
         padding: 8rem 4rem 2rem;
     }
 }
 
-.privacy-header__container {
+.refund-header__container {
     max-width: 1400px;
     margin: 0 auto;
     text-align: center;
 }
 
-.privacy-header__back {
+.refund-header__back {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -38,16 +38,16 @@
     justify-content: center;
 }
 
-.privacy-header__back:hover {
+.refund-header__back:hover {
     color: #00D4FF;
 }
 
-.privacy-header__back-icon {
+.refund-header__back-icon {
     width: 1rem;
     height: 1rem;
 }
 
-.privacy-header__info {
+.refund-header__info {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -55,7 +55,7 @@
     margin-bottom: 1.5rem;
 }
 
-.privacy-header__icon-wrapper {
+.refund-header__icon-wrapper {
     width: 3.5rem;
     height: 3.5rem;
     border-radius: 1rem;
@@ -65,59 +65,59 @@
     justify-content: center;
 }
 
-.privacy-header__icon {
+.refund-header__icon {
     width: 1.75rem;
     height: 1.75rem;
     color: #00D4FF;
 }
 
-.privacy-header__title {
+.refund-header__title {
     font-size: 1.875rem;
     font-weight: 700;
     color: #ffffff;
 }
 
 @media (min-width: 768px) {
-    .privacy-header__title {
+    .refund-header__title {
         font-size: 2.25rem;
     }
 }
 
-.privacy-header__date {
+.refund-header__date {
     color: rgba(255, 255, 255, 0.5);
     font-size: 0.875rem;
     margin-top: 0.25rem;
 }
 
 /* Content Section */
-.privacy-content {
+.refund-content {
     padding: 0 1rem 5rem;
 }
 
 @media (min-width: 768px) {
-    .privacy-content {
+    .refund-content {
         padding: 0 2rem 6rem;
     }
 }
 
 @media (min-width: 1024px) {
-    .privacy-content {
+    .refund-content {
         padding: 0 4rem 8rem;
     }
 }
 
-.privacy-content__container {
+.refund-content__container {
     max-width: 1400px;
     margin: 0 auto;
 }
 
-.privacy-content__wrapper {
+.refund-content__wrapper {
     max-width: 56rem;
     margin: 0 auto;
 }
 
-/* Privacy Card */
-.privacy-card {
+/* Refund Card */
+.refund-card {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 1.5rem;
@@ -125,30 +125,30 @@
     margin-bottom: 2rem;
 }
 
-.privacy-card--highlight {
+.refund-card--highlight {
     background: linear-gradient(to right, rgba(0, 212, 255, 0.1), rgba(57, 255, 20, 0.1));
     border-color: rgba(0, 212, 255, 0.3);
 }
 
-.privacy-card--note {
+.refund-card--note {
     background: rgba(255, 255, 255, 0.02);
     border-color: rgba(255, 255, 255, 0.05);
     text-align: center;
 }
 
-.privacy-card__text--note {
+.refund-card__text--note {
     color: rgba(255, 255, 255, 0.5);
     font-size: 0.875rem;
 }
 
-.privacy-card__title {
+.refund-card__title {
     font-size: 1.25rem;
     font-weight: 600;
     color: #ffffff;
     margin-bottom: 1rem;
 }
 
-.privacy-card__subtitle {
+.refund-card__subtitle {
     font-size: 1.125rem;
     font-weight: 500;
     color: #ffffff;
@@ -156,17 +156,17 @@
     margin-bottom: 0.75rem;
 }
 
-.privacy-card__text {
+.refund-card__text {
     color: rgba(255, 255, 255, 0.7);
     line-height: 1.625;
     margin-bottom: 1rem;
 }
 
-.privacy-card__text:last-child {
+.refund-card__text:last-child {
     margin-bottom: 0;
 }
 
-.privacy-card__list {
+.refund-card__list {
     list-style-type: disc;
     list-style-position: inside;
     color: rgba(255, 255, 255, 0.7);
@@ -176,44 +176,48 @@
     margin-bottom: 1rem;
 }
 
-.privacy-card__list:last-child {
+.refund-card__list:last-child {
     margin-bottom: 0;
 }
 
-.privacy-card__list-item strong {
+.refund-card__list-item {
+    line-height: 1.625;
+}
+
+.refund-card__list-item strong {
     color: #ffffff;
     font-weight: 600;
 }
 
 /* Contact Info in Card */
-.privacy-card__contact {
+.refund-card__contact {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
     color: rgba(255, 255, 255, 0.7);
 }
 
-.privacy-card__contact-label {
+.refund-card__contact-label {
     color: #ffffff;
     font-weight: 600;
 }
 
-.privacy-card__contact-link {
+.refund-card__contact-link {
     color: #00D4FF;
     text-decoration: none;
 }
 
-.privacy-card__contact-link:hover {
+.refund-card__contact-link:hover {
     text-decoration: underline;
 }
 
 /* Back to Top */
-.privacy-back-top {
+.refund-back-top {
     text-align: center;
     margin-top: 3rem;
 }
 
-.privacy-back-top__button {
+.refund-back-top__button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -229,7 +233,7 @@
     transition: all 0.3s ease;
 }
 
-.privacy-back-top__button:hover {
+.refund-back-top__button:hover {
     border-color: #00D4FF;
     color: #00D4FF;
     background: rgba(0, 212, 255, 0.1);

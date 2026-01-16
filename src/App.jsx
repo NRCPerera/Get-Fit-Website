@@ -7,6 +7,8 @@ import Gym from './pages/Gym';
 import CoffeeBar from './pages/CoffeeBar';
 import Contact from './pages/Contact';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsConditions from './pages/TermsConditions';
+import RefundPolicy from './pages/RefundPolicy';
 import './App.css';
 
 // Scroll to top on route change
@@ -31,6 +33,8 @@ function App() {
         <Route path="/coffee" element={<CoffeeBar />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
+        <Route path="/terms" element={<TermsConditions />} />
+        <Route path="/refunds" element={<RefundPolicy />} />
       </Routes>
       <Footer />
     </div>
@@ -38,3 +42,4 @@ function App() {
 }
 
 export default App;
+

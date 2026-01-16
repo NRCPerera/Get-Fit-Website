@@ -4,7 +4,7 @@ import { businessInfo } from '../data/siteData';
 import './PrivacyPolicy.css';
 
 const PrivacyPolicy = () => {
-    const lastUpdated = "January 1, 2026";
+    const lastUpdated = "January 16, 2026";
 
     return (
         <main className="privacy">
@@ -33,83 +33,90 @@ const PrivacyPolicy = () => {
                 <div className="privacy-content__container">
                     <div className="privacy-content__wrapper">
                         {/* Introduction */}
-                        <div className="privacy-card">
-                            <h2 className="privacy-card__title">Introduction</h2>
+                        <div className="privacy-card privacy-card--highlight">
+                            <h2 className="privacy-card__title">Privacy Policy</h2>
                             <p className="privacy-card__text">
-                                Get Fit ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy
-                                explains how we collect, use, disclose, and safeguard your information when you visit our
-                                fitness center and coffee bar, use our website, or interact with our services. Please read
-                                this privacy policy carefully. By using our services, you consent to the data practices
-                                described in this statement.
+                                At Get Fit, we are committed to protecting the privacy and security of our customers'
+                                personal information. This Privacy Policy outlines how we collect, use, and safeguard
+                                your information when you visit or make a purchase on our website or use our services at
+                                our fitness center and coffee bar. By using our website and services, you consent to the
+                                practices described in this policy.
                             </p>
                         </div>
 
                         {/* Information We Collect */}
                         <div className="privacy-card">
                             <h2 className="privacy-card__title">Information We Collect</h2>
-
-                            <h3 className="privacy-card__subtitle">Personal Information</h3>
                             <p className="privacy-card__text">
-                                We may collect personal information that you voluntarily provide to us when you:
+                                When you visit our website or use our services, we may collect certain information about you, including:
                             </p>
                             <ul className="privacy-card__list">
-                                <li>Register for a gym membership</li>
-                                <li>Sign up for classes or personal training sessions</li>
-                                <li>Fill out a contact form on our website</li>
-                                <li>Subscribe to our newsletter</li>
-                                <li>Participate in promotions or surveys</li>
+                                <li className="privacy-card__list-item">
+                                    <strong>Personal identification information</strong> (such as your name, email address,
+                                    and phone number) provided voluntarily by you during the registration or checkout process.
+                                </li>
+                                <li className="privacy-card__list-item">
+                                    <strong>Payment and billing information</strong> necessary to process your orders and
+                                    membership payments, including credit card details, which are securely handled by trusted
+                                    third-party payment processors.
+                                </li>
+                                <li className="privacy-card__list-item">
+                                    <strong>Browsing information</strong>, such as your IP address, browser type, and device
+                                    information, collected automatically using cookies and similar technologies.
+                                </li>
+                                <li className="privacy-card__list-item">
+                                    <strong>Health and fitness information</strong> necessary for safe exercise participation
+                                    and personalized training services.
+                                </li>
                             </ul>
-                            <p className="privacy-card__text">
-                                This information may include your name, email address, phone number, date of birth,
-                                emergency contact information, payment details, and health-related information necessary
-                                for safe exercise participation.
-                            </p>
-
-                            <h3 className="privacy-card__subtitle">Automatically Collected Information</h3>
-                            <p className="privacy-card__text">
-                                When you access our website, we may automatically collect certain information about your
-                                device, including information about your web browser, IP address, time zone, and some of
-                                the cookies installed on your device. We refer to this automatically-collected information
-                                as "Device Information." We collect Device Information using cookies, log files, web beacons,
-                                tags, and pixels.
-                            </p>
                         </div>
 
-                        {/* How We Use Your Information */}
+                        {/* Use of Information */}
                         <div className="privacy-card">
-                            <h2 className="privacy-card__title">How We Use Your Information</h2>
+                            <h2 className="privacy-card__title">Use of Information</h2>
                             <p className="privacy-card__text">
-                                We use the information we collect to:
+                                We may use the collected information for the following purposes:
                             </p>
                             <ul className="privacy-card__list">
-                                <li>Process your membership registration and manage your account</li>
-                                <li>Facilitate class bookings and personal training sessions</li>
-                                <li>Process payments and send transaction receipts</li>
-                                <li>Communicate with you about your membership, classes, and promotions</li>
-                                <li>Improve our facilities, services, and website experience</li>
-                                <li>Ensure the safety and security of our premises and members</li>
-                                <li>Comply with legal obligations</li>
-                                <li>Respond to your inquiries and provide customer support</li>
+                                <li className="privacy-card__list-item">
+                                    To process and fulfill your orders, including shipping and delivery.
+                                </li>
+                                <li className="privacy-card__list-item">
+                                    To communicate with you regarding your purchases, membership, provide customer support,
+                                    and respond to inquiries or requests.
+                                </li>
+                                <li className="privacy-card__list-item">
+                                    To personalize your experience and present relevant product recommendations and promotions.
+                                </li>
+                                <li className="privacy-card__list-item">
+                                    To improve our website, products, and services based on your feedback and browsing patterns.
+                                </li>
+                                <li className="privacy-card__list-item">
+                                    To detect and prevent fraud, unauthorized activities, and abuse of our website.
+                                </li>
+                                <li className="privacy-card__list-item">
+                                    To ensure the safety and security of our premises and members.
+                                </li>
                             </ul>
                         </div>
 
                         {/* Information Sharing */}
                         <div className="privacy-card">
-                            <h2 className="privacy-card__title">Information Sharing and Disclosure</h2>
+                            <h2 className="privacy-card__title">Information Sharing</h2>
                             <p className="privacy-card__text">
-                                We do not sell, trade, or rent your personal information to third parties. We may share
-                                your information in the following circumstances:
+                                We respect your privacy and do not sell, trade, or otherwise transfer your personal
+                                information to third parties without your consent, except in the following circumstances:
                             </p>
                             <ul className="privacy-card__list">
-                                <li><strong>Service Providers:</strong> We may share information with third-party
-                                    vendors who perform services on our behalf, such as payment processing, email delivery,
-                                    and website hosting.</li>
-                                <li><strong>Legal Requirements:</strong> We may disclose your information if required
-                                    by law or in response to valid requests by public authorities.</li>
-                                <li><strong>Business Transfers:</strong> In the event of a merger, acquisition, or sale
-                                    of assets, your information may be transferred as part of that transaction.</li>
-                                <li><strong>Emergency Contacts:</strong> In case of a medical emergency, we may contact
-                                    your designated emergency contact.</li>
+                                <li className="privacy-card__list-item">
+                                    <strong>Trusted service providers:</strong> We may share your information with third-party
+                                    service providers who assist us in operating our website, processing payments, and delivering
+                                    products. These providers are contractually obligated to handle your data securely and confidentially.
+                                </li>
+                                <li className="privacy-card__list-item">
+                                    <strong>Legal requirements:</strong> We may disclose your information if required to do so
+                                    by law or in response to valid legal requests or orders.
+                                </li>
                             </ul>
                         </div>
 
@@ -117,82 +124,31 @@ const PrivacyPolicy = () => {
                         <div className="privacy-card">
                             <h2 className="privacy-card__title">Data Security</h2>
                             <p className="privacy-card__text">
-                                We implement appropriate technical and organizational measures to protect your personal
-                                information against unauthorized access, alteration, disclosure, or destruction. These
-                                measures include secure socket layer (SSL) encryption, secure servers, firewalls, and
-                                password-protected databases. However, no method of transmission over the Internet or
-                                electronic storage is 100% secure, and we cannot guarantee absolute security.
+                                We implement industry-standard security measures to protect your personal information from
+                                unauthorized access, alteration, disclosure, or destruction. However, please be aware that
+                                no method of transmission over the internet or electronic storage is 100% secure, and we
+                                cannot guarantee absolute security.
                             </p>
                         </div>
 
-                        {/* Cookies */}
+                        {/* Cookies and Tracking Technologies */}
                         <div className="privacy-card">
                             <h2 className="privacy-card__title">Cookies and Tracking Technologies</h2>
                             <p className="privacy-card__text">
-                                Our website uses cookies and similar tracking technologies to enhance your experience.
-                                Cookies are small data files stored on your device. We use:
-                            </p>
-                            <ul className="privacy-card__list">
-                                <li><strong>Essential Cookies:</strong> Required for the website to function properly.</li>
-                                <li><strong>Analytics Cookies:</strong> Help us understand how visitors interact with our website.</li>
-                                <li><strong>Preference Cookies:</strong> Remember your settings and preferences.</li>
-                            </ul>
-                            <p className="privacy-card__text">
-                                You can control cookies through your browser settings. Please note that disabling certain
-                                cookies may affect the functionality of our website.
+                                We use cookies and similar technologies to enhance your browsing experience, analyze website
+                                traffic, and gather information about your preferences and interactions with our website.
+                                You have the option to disable cookies through your browser settings, but this may limit
+                                certain features and functionality of our website.
                             </p>
                         </div>
 
-                        {/* Your Rights */}
+                        {/* Changes to the Privacy Policy */}
                         <div className="privacy-card">
-                            <h2 className="privacy-card__title">Your Rights</h2>
+                            <h2 className="privacy-card__title">Changes to the Privacy Policy</h2>
                             <p className="privacy-card__text">
-                                Depending on your location, you may have certain rights regarding your personal information:
-                            </p>
-                            <ul className="privacy-card__list">
-                                <li><strong>Access:</strong> Request a copy of the personal information we hold about you.</li>
-                                <li><strong>Correction:</strong> Request correction of inaccurate or incomplete information.</li>
-                                <li><strong>Deletion:</strong> Request deletion of your personal information, subject to legal obligations.</li>
-                                <li><strong>Opt-out:</strong> Unsubscribe from marketing communications at any time.</li>
-                                <li><strong>Data Portability:</strong> Request your data in a machine-readable format.</li>
-                            </ul>
-                            <p className="privacy-card__text">
-                                To exercise these rights, please contact us using the information provided below.
-                            </p>
-                        </div>
-
-                        {/* Children's Privacy */}
-                        <div className="privacy-card">
-                            <h2 className="privacy-card__title">Children's Privacy</h2>
-                            <p className="privacy-card__text">
-                                Our services are not intended for individuals under the age of 16 without parental consent.
-                                We do not knowingly collect personal information from children under 16. If you are a parent
-                                or guardian and believe your child has provided us with personal information without your
-                                consent, please contact us, and we will take steps to delete such information.
-                            </p>
-                        </div>
-
-                        {/* Health Information */}
-                        <div className="privacy-card">
-                            <h2 className="privacy-card__title">Health and Fitness Information</h2>
-                            <p className="privacy-card__text">
-                                As a fitness facility, we may collect health-related information to ensure your safety and
-                                provide appropriate services. This information may include medical conditions, physical
-                                limitations, or fitness goals. We treat this information with the highest level of
-                                confidentiality and use it solely for the purpose of providing safe and effective fitness
-                                services. We do not share health information with third parties except as required by law or
-                                in case of emergency.
-                            </p>
-                        </div>
-
-                        {/* Changes to Policy */}
-                        <div className="privacy-card">
-                            <h2 className="privacy-card__title">Changes to This Privacy Policy</h2>
-                            <p className="privacy-card__text">
-                                We may update this Privacy Policy from time to time to reflect changes in our practices or
-                                for other operational, legal, or regulatory reasons. We will notify you of any material
-                                changes by posting the new Privacy Policy on this page and updating the "Last updated" date.
-                                We encourage you to review this Privacy Policy periodically.
+                                We reserve the right to update or modify this Privacy Policy at any time. Any changes will
+                                be posted on this page with a revised "last updated" date. We encourage you to review this
+                                Privacy Policy periodically to stay informed about how we collect, use, and protect your information.
                             </p>
                         </div>
 
@@ -200,7 +156,8 @@ const PrivacyPolicy = () => {
                         <div className="privacy-card privacy-card--highlight">
                             <h2 className="privacy-card__title">Contact Us</h2>
                             <p className="privacy-card__text">
-                                If you have any questions about this Privacy Policy or our data practices, please contact us:
+                                If you have any questions, concerns, or requests regarding our Privacy Policy or the handling
+                                of your personal information, please contact us using the information provided below.
                             </p>
                             <div className="privacy-card__contact">
                                 <p><span className="privacy-card__contact-label">Get Fit</span></p>
@@ -208,6 +165,14 @@ const PrivacyPolicy = () => {
                                 <p>Phone: <a href={`tel:${businessInfo.phone}`} className="privacy-card__contact-link">{businessInfo.phone}</a></p>
                                 <p>Email: <a href={`mailto:${businessInfo.email}`} className="privacy-card__contact-link">{businessInfo.email}</a></p>
                             </div>
+                        </div>
+
+                        {/* Disclaimer Note */}
+                        <div className="privacy-card privacy-card--note">
+                            <p className="privacy-card__text privacy-card__text--note">
+                                <em>(Note: This Privacy Policy is provided as a general guideline and reflects Get Fit's
+                                    commitment to protecting your privacy.)</em>
+                            </p>
                         </div>
 
                         {/* Back to top */}
