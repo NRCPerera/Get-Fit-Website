@@ -69,7 +69,7 @@ export const testimonials = [
         id: 1,
         name: "Supun Bathiya",
         role: "Fitness Enthusiast",
-        image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8Po6iLL9QoJtA46rZaCVjfssuwCujqEg7u54AWdUz4bYI2OS25P72_1w&s?w=150&h=150&fit=crop",
         content: "Get Fit has completely transformed my morning routine. I start with an intense workout and end with their amazing cold brew. It's the perfect one-stop destination!",
         rating: 5,
         category: "gym"
@@ -87,7 +87,7 @@ export const testimonials = [
         id: 3,
         name: "Dilanka Fernando",
         role: "Personal Trainer",
-        image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9e-Zn34KS4JbYXYafI4CjZBmfb1B1A9su2z-PN3Pht3ZzhugmBNKV3og&s?w=150&h=150&fit=crop",
         content: "As a trainer, I appreciate the quality of equipment here. My clients love that they can grab a protein shake right after our sessions. Brilliant concept!",
         rating: 5,
         category: "gym"
