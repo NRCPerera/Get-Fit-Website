@@ -67,7 +67,7 @@ export const features = [
 export const testimonials = [
     {
         id: 1,
-        name: "Sarah M.",
+        name: "Supun Bathiya",
         role: "Fitness Enthusiast",
         image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop",
         content: "Get Fit has completely transformed my morning routine. I start with an intense workout and end with their amazing cold brew. It's the perfect one-stop destination!",
@@ -85,7 +85,7 @@ export const testimonials = [
     },
     {
         id: 3,
-        name: "Priya D.",
+        name: "Dilanka Fernando",
         role: "Personal Trainer",
         image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop",
         content: "As a trainer, I appreciate the quality of equipment here. My clients love that they can grab a protein shake right after our sessions. Brilliant concept!",
@@ -94,7 +94,7 @@ export const testimonials = [
     },
     {
         id: 4,
-        name: "Nimal R.",
+        name: "Nimal Rathnayake",
         role: "Regular Member",
         image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop",
         content: "The membership is worth every rupee. Clean facilities, friendly staff, and that post-workout latte hits different. This place understands fitness and fuel!",
