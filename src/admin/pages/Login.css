@@ -128,19 +128,26 @@
     margin-bottom: 0.5rem;
 }
 
-.admin-input-wrapper {
+.admin-login-card .admin-input-wrapper {
     position: relative;
+    display: flex;
+    align-items: center;
 }
 
-.admin-input-icon {
+.admin-login-card .admin-input-icon {
     position: absolute;
-    left: 1rem;
+    left: 0.875rem;
     top: 50%;
     transform: translateY(-50%);
     color: rgba(255, 255, 255, 0.4);
+    pointer-events: none;
+    z-index: 2;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
 }
 
-.admin-form-input {
+.admin-login-card .admin-form-input {
     width: 100%;
     padding: 0.875rem 1rem 0.875rem 3rem;
     background: rgba(255, 255, 255, 0.05);
@@ -151,6 +158,9 @@
     font-family: 'Outfit', sans-serif;
     outline: none;
     transition: all 0.3s ease;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
 }
 
 .admin-form-input::placeholder {
