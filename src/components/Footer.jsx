@@ -11,7 +11,7 @@ import {
     ArrowUp
 } from 'lucide-react';
 import { businessInfo, navLinks } from '../data/siteData';
-import logoImage from '../assets/icon.png';
+import logoImage from '../assets/icon.ico';
 import './Footer.css';
 
 const Footer = () => {

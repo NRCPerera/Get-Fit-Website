@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { navLinks } from '../data/siteData';
-import logoImage from '../assets/icon.png';
+import logoImage from '../assets/icon.ico';
 import './Navbar.css';
 
 const Navbar = () => {

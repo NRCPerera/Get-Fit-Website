@@ -1,0 +1,254 @@
+/* Admin Analytics Page Styles - Dark Theme */
+
+.admin-analytics-page {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Hero Stats Grid */
+.admin-analytics-hero-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+    .admin-analytics-hero-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .admin-analytics-hero-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.admin-analytics-hero-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.admin-hero-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    z-index: 1;
+}
+
+.admin-hero-label {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.5rem;
+}
+
+.admin-hero-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+.admin-hero-trend {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.admin-hero-trend.positive {
+    color: var(--color-accent);
+}
+
+.admin-hero-trend.negative {
+    color: #EF4444;
+}
+
+.admin-hero-icon-wrapper {
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-hero-icon-wrapper.primary {
+    background: rgba(0, 212, 255, 0.15);
+    color: var(--color-primary);
+}
+
+.admin-hero-icon-wrapper.success {
+    background: rgba(57, 255, 20, 0.15);
+    color: var(--color-accent);
+}
+
+.admin-hero-icon-wrapper.revenue {
+    background: rgba(236, 72, 153, 0.15);
+    color: #EC4899;
+}
+
+.admin-hero-icon-wrapper.warning {
+    background: rgba(245, 158, 11, 0.15);
+    color: #F59E0B;
+}
+
+/* Charts Grid */
+.admin-analytics-charts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+    .admin-analytics-charts-grid {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+.admin-analytics-chart-card {
+    min-height: 400px;
+}
+
+.admin-chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.admin-chart-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.admin-chart-subtitle {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.admin-chart-select {
+    padding: 0.5rem 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.875rem;
+    outline: none;
+    cursor: pointer;
+}
+
+.admin-chart-select option {
+    background: var(--color-slate-800);
+    color: #ffffff;
+}
+
+.admin-chart-container {
+    height: 300px;
+    width: 100%;
+}
+
+.admin-chart-empty {
+    text-align: center;
+    padding: 2rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Side Cards */
+.admin-analytics-side {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Activities List */
+.admin-activities-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.admin-activity-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.admin-activity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-activity-name {
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.admin-activity-percent {
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+.admin-progress-track {
+    height: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 9999px;
+    overflow: hidden;
+}
+
+.admin-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent) 100%);
+    border-radius: 9999px;
+    transition: width 0.5s ease;
+}
+
+.admin-activity-meta {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Insight Card */
+.admin-insight-card {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(57, 255, 20, 0.05) 100%);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.admin-insight-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.admin-insight-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-dark);
+}
+
+.admin-insight-header h3 {
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.admin-insight-header p {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.admin-insight-text {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+}

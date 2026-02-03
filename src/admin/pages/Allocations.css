@@ -1,0 +1,302 @@
+/* Admin Allocations Page Styles - Dark Theme */
+
+.admin-allocations-page {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Stats Grid */
+.admin-allocation-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+@media (min-width: 768px) {
+    .admin-allocation-stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.admin-allocation-stat-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.admin-allocation-stat-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.admin-allocation-stat-icon.total {
+    background: rgba(0, 212, 255, 0.15);
+    color: var(--color-primary);
+}
+
+.admin-allocation-stat-icon.active {
+    background: rgba(57, 255, 20, 0.15);
+    color: var(--color-accent);
+}
+
+.admin-allocation-stat-icon.expired {
+    background: rgba(245, 158, 11, 0.15);
+    color: #F59E0B;
+}
+
+.admin-allocation-stat-icon.cancelled {
+    background: rgba(239, 68, 68, 0.15);
+    color: #EF4444;
+}
+
+.admin-allocation-stat-label {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0.25rem;
+}
+
+.admin-allocation-stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+/* Table Card */
+.admin-allocations-table-card {
+    overflow: hidden;
+    padding: 0;
+}
+
+/* Filters */
+.admin-allocations-filters {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@media (min-width: 1024px) {
+    .admin-allocations-filters {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+.admin-filters-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+}
+
+.admin-source-filters {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.admin-source-filter-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.6);
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.admin-source-filter-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.admin-source-filter-btn.active {
+    background: rgba(0, 212, 255, 0.1);
+    border-color: rgba(0, 212, 255, 0.3);
+    color: var(--color-primary);
+}
+
+/* Table */
+.admin-allocations-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-allocations-table th {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.admin-allocations-table td {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.admin-allocations-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+/* User Cell */
+.admin-allocation-user-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.admin-allocation-avatar {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.875rem;
+    flex-shrink: 0;
+}
+
+.admin-allocation-avatar.member {
+    background: linear-gradient(135deg, var(--color-accent) 0%, #2ECC10 100%);
+    color: var(--color-dark);
+}
+
+.admin-allocation-avatar.instructor {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #00A3CC 100%);
+    color: var(--color-dark);
+}
+
+.admin-allocation-user-name {
+    font-weight: 500;
+    color: #ffffff;
+    font-size: 0.875rem;
+}
+
+.admin-allocation-user-email {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+/* Source Badge */
+.admin-source-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    border-radius: var(--radius-sm);
+}
+
+.admin-source-badge.allocated {
+    background: rgba(0, 212, 255, 0.15);
+    color: var(--color-primary);
+}
+
+.admin-source-badge.subscribed {
+    background: rgba(57, 255, 20, 0.15);
+    color: var(--color-accent);
+}
+
+/* Status Badge */
+.admin-allocation-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: 9999px;
+    text-transform: capitalize;
+}
+
+.admin-allocation-status-badge.active {
+    background: rgba(57, 255, 20, 0.15);
+    color: var(--color-accent);
+}
+
+.admin-allocation-status-badge.expired {
+    background: rgba(245, 158, 11, 0.15);
+    color: #F59E0B;
+}
+
+.admin-allocation-status-badge.cancelled {
+    background: rgba(239, 68, 68, 0.15);
+    color: #EF4444;
+}
+
+/* Date Cell */
+.admin-allocation-date {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.875rem;
+}
+
+.admin-expiry-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.admin-days-remaining {
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.admin-days-remaining.normal {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.admin-days-remaining.warning {
+    color: #F59E0B;
+}
+
+/* Payment Info */
+.admin-payment-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.admin-payment-amount {
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.admin-payment-status {
+    font-size: 0.7rem;
+    text-transform: capitalize;
+}
+
+.admin-payment-status.completed {
+    color: var(--color-accent);
+}
+
+.admin-payment-status.pending {
+    color: #F59E0B;
+}
+
+.admin-no-payment {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.4);
+    font-style: italic;
+}

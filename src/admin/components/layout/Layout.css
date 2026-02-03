@@ -1,0 +1,30 @@
+/* Admin Layout Styles - Dark Theme */
+
+.admin-layout-container {
+    display: flex;
+    min-height: 100vh;
+    background: var(--color-dark);
+    overflow: hidden;
+}
+
+.admin-main-content {
+    flex: 1;
+    overflow: auto;
+    width: 100%;
+    position: relative;
+    background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-slate-900) 100%);
+}
+
+.admin-content-wrapper {
+    padding: 2rem;
+    max-width: 90rem;
+    margin: 0 auto;
+    width: 100%;
+    padding-bottom: 5rem;
+}
+
+@media (max-width: 768px) {
+    .admin-content-wrapper {
+        padding: 1rem;
+    }
+}
