@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import {
     LayoutDashboard,
     Users,
     Dumbbell,
+    ClipboardList,
     CreditCard,
     UserCheck,
     BarChart,
@@ -82,6 +84,7 @@ const Sidebar = () => {
                 <SidebarLink to="/admin" icon={LayoutDashboard} label="Dashboard" collapsed={collapsed} />
                 <SidebarLink to="/admin/users" icon={Users} label="Users & Instructors" collapsed={collapsed} />
                 <SidebarLink to="/admin/exercises" icon={Dumbbell} label="Exercises" collapsed={collapsed} />
+                <SidebarLink to="/admin/workouts" icon={ClipboardList} label="Workouts" collapsed={collapsed} />
                 <SidebarLink to="/admin/payments" icon={CreditCard} label="Payments" collapsed={collapsed} />
                 <SidebarLink to="/admin/allocations" icon={UserCheck} label="Allocations" collapsed={collapsed} />
                 <SidebarLink to="/admin/analytics" icon={BarChart} label="Analytics" collapsed={collapsed} />

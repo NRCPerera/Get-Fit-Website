@@ -10,4 +10,6 @@ export { default as Analytics } from './Analytics';
 export { default as Notifications } from './Notifications';
 export { default as CreateNotification } from './CreateNotification';
 export { default as EditNotification } from './EditNotification';
-
+export { default as Workouts } from './Workouts';
+export { default as AddWorkout } from './AddWorkout';
+export { default as EditWorkout } from './EditWorkout';

@@ -26,7 +26,10 @@ import {
   Analytics,
   Notifications,
   CreateNotification,
-  EditNotification
+  EditNotification,
+  Workouts,
+  AddWorkout,
+  EditWorkout
 } from './admin/pages';
 
 // Scroll to top on route change
@@ -106,6 +109,9 @@ function AdminRoutes() {
                 <Route path="exercises" element={<Exercises />} />
                 <Route path="exercises/new" element={<AddExercise />} />
                 <Route path="exercises/edit/:id" element={<EditExercise />} />
+                <Route path="workouts" element={<Workouts />} />
+                <Route path="workouts/new" element={<AddWorkout />} />
+                <Route path="workouts/edit/:id" element={<EditWorkout />} />
                 <Route path="payments" element={<Payments />} />
                 <Route path="allocations" element={<Allocations />} />
                 <Route path="analytics" element={<Analytics />} />
