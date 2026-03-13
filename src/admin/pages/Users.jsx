@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useState, useEffect, useCallback } from 'react';
 import { adminAPI } from '../api/admin.api';
 import Card from '../components/common/Card';
 import Button from '../components/common/Button';
@@ -17,6 +18,27 @@ import {
 import { cn } from '../utils';
 import { motion } from 'framer-motion';
 import './Users.css';
+
+const getApiErrorMessage = (error, fallbackMessage) => {
+    const responseData = error?.response?.data;
+
+    if (!responseData) {
+        return error?.message || fallbackMessage;
+    }
+
+    if (typeof responseData === 'string') {
+        return responseData;
+    }
+
+    return (
+        responseData.message ||
+        responseData.error?.message ||
+        responseData.error ||
+        responseData.errors?.[0]?.message ||
+        error?.message ||
+        fallbackMessage
+    );
+};
 
 const UsersPage = () => {
     const [activeTab, setActiveTab] = useState('users');
@@ -48,11 +70,7 @@ const UsersPage = () => {
     const [selectedUserDetails, setSelectedUserDetails] = useState(null);
     const [loadingUserDetails, setLoadingUserDetails] = useState(false);
 
-    useEffect(() => {
-        fetchData();
-    }, [activeTab, filter]);
-
-    const fetchData = async () => {
+    const fetchData = useCallback(async () => {
         setLoading(true);
         try {
             if (activeTab === 'users') {
@@ -67,7 +85,11 @@ const UsersPage = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [activeTab, filter]);
+
+    useEffect(() => {
+        fetchData();
+    }, [fetchData]);
 
     const getRoleBadgeClass = (role) => {
         switch (role?.toLowerCase()) {
@@ -105,7 +127,7 @@ const UsersPage = () => {
             setSelectedInstructorId('');
         } catch (error) {
             console.error(error);
-            alert(error.response?.data?.message || 'Failed to allocate instructor');
+            alert(getApiErrorMessage(error, 'Failed to allocate instructor'));
         } finally {
             setAllocating(false);
         }
@@ -121,7 +143,7 @@ const UsersPage = () => {
             alert('User suspended successfully');
         } catch (error) {
             console.error(error);
-            alert(error.response?.data?.message || 'Failed to suspend user');
+            alert(getApiErrorMessage(error, 'Failed to suspend user'));
         }
     };
 
@@ -134,7 +156,7 @@ const UsersPage = () => {
             alert('User activated successfully');
         } catch (error) {
             console.error(error);
-            alert(error.response?.data?.message || 'Failed to activate user');
+            alert(getApiErrorMessage(error, 'Failed to activate user'));
         }
     };
 
@@ -162,19 +184,43 @@ const UsersPage = () => {
             alert('Instructor approved successfully');
         } catch (error) {
             console.error(error);
-            alert(error.response?.data?.message || 'Failed to approve instructor');
+            alert(getApiErrorMessage(error, 'Failed to approve instructor'));
         }
     };
 
     const handleCreateInstructor = async (e) => {
         e.preventDefault();
+
+        const normalizedName = instructorForm.name.trim();
+        const normalizedEmail = instructorForm.email.trim().toLowerCase();
+        const normalizedPassword = instructorForm.password.trim();
+        const normalizedPhone = instructorForm.phone.trim();
+        const normalizedBio = instructorForm.bio.trim();
+        const parsedMonthlyRate = Number(instructorForm.monthlyRate);
+        const parsedExperience = Number.parseInt(instructorForm.experience, 10);
+
+        if (!normalizedName || !normalizedEmail || !normalizedPassword) {
+            alert('Name, email, and password are required');
+            return;
+        }
+
+        // Backend treats 0 as missing; enforce a positive monthly rate on the client.
+        if (!Number.isFinite(parsedMonthlyRate) || parsedMonthlyRate <= 0) {
+            alert('Monthly rate must be greater than 0');
+            return;
+        }
+
         setCreatingInstructor(true);
         try {
             await adminAPI.createInstructor({
-                ...instructorForm,
-                monthlyRate: parseFloat(instructorForm.monthlyRate),
-                experience: parseInt(instructorForm.experience) || 0,
-                specializations: instructorForm.specializations
+                name: normalizedName,
+                email: normalizedEmail,
+                password: normalizedPassword,
+                phone: normalizedPhone,
+                monthlyRate: parsedMonthlyRate,
+                experience: Number.isFinite(parsedExperience) ? Math.max(0, parsedExperience) : 0,
+                bio: normalizedBio,
+                specializations: instructorForm.specializations.filter(Boolean)
             });
             alert('Instructor created successfully!');
             setCreateInstructorModalOpen(false);
@@ -191,7 +237,7 @@ const UsersPage = () => {
             fetchData();
         } catch (error) {
             console.error(error);
-            alert(error.response?.data?.message || 'Failed to create instructor');
+            alert(getApiErrorMessage(error, 'Failed to create instructor'));
         } finally {
             setCreatingInstructor(false);
         }
@@ -593,7 +639,7 @@ const UsersPage = () => {
                                 onChange={handleInstructorFormChange}
                                 className="admin-form-input"
                                 required
-                                min="0"
+                                min="1"
                             />
                         </div>
                         <div className="admin-form-group">
