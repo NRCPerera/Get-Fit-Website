@@ -68,6 +68,7 @@ const AddWorkout = () => {
                 exerciseId: '',
                 exerciseName: '',
                 setReps: [{ sets: '3', reps: '10' }],
+                duration: '',
                 restTime: 60,
                 scheduleDay: 1,
                 notes: ''
@@ -156,7 +157,7 @@ const AddWorkout = () => {
 
         try {
             await workoutAPI.createWorkout(formData);
-            navigate('/admin/workouts');
+            navigate('/workouts');
         } catch (error) {
             console.error(error);
             alert('Failed to create workout');
@@ -166,9 +167,7 @@ const AddWorkout = () => {
     };
 
     const getMaxDays = () => {
-        if (formData.scheduleType === '3-day') return 3;
-        if (formData.scheduleType === '2-day') return 2;
-        return 1;
+        return parseInt(formData.scheduleType) || 1;
     };
 
     const getFilteredExercises = (index) => {
@@ -229,9 +228,13 @@ const AddWorkout = () => {
                                 <div className="input-group">
                                     <label className="input-label">Schedule Type</label>
                                     <select name="scheduleType" value={formData.scheduleType} onChange={handleChange} className="select-input">
-                                        <option value="1-day">Single Day</option>
-                                        <option value="2-day">2 Day Split</option>
-                                        <option value="3-day">3 Day Split</option>
+                                        <option value="1-day">1 Day</option>
+                                        <option value="2-day">2 Days</option>
+                                        <option value="3-day">3 Days</option>
+                                        <option value="4-day">4 Days</option>
+                                        <option value="5-day">5 Days</option>
+                                        <option value="6-day">6 Days</option>
+                                        <option value="7-day">7 Days</option>
                                     </select>
                                 </div>
                             </div>
@@ -405,11 +408,23 @@ const AddWorkout = () => {
 
                                                         <div className="exercise-row">
                                                             <div className="input-group inline">
+                                                                <label className="small-label">Duration (mins)</label>
+                                                                <input
+                                                                    type="number"
+                                                                    min="0"
+                                                                    value={exercise.duration}
+                                                                    onChange={(e) => updateExercise(index, 'duration', e.target.value === '' ? '' : parseInt(e.target.value))}
+                                                                    className="custom-input small-input"
+                                                                    placeholder="0"
+                                                                />
+                                                            </div>
+                                                            <div className="input-group inline">
                                                                 <label className="small-label">Rest (seconds)</label>
                                                                 <input
                                                                     type="number"
+                                                                    min="0"
                                                                     value={exercise.restTime}
-                                                                    onChange={(e) => updateExercise(index, 'restTime', parseInt(e.target.value) || 0)}
+                                                                    onChange={(e) => updateExercise(index, 'restTime', e.target.value === '' ? '' : parseInt(e.target.value))}
                                                                     className="custom-input small-input"
                                                                 />
                                                             </div>
