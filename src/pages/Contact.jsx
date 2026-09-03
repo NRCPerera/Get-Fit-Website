@@ -282,17 +282,25 @@ const Contact = () => {
                                     <div className="contact-hours__item">
                                         <div className="contact-hours__label">
                                             <Dumbbell className="contact-hours__label-icon contact-hours__label-icon--primary" />
-                                            <span className="contact-hours__label-text">The Gym</span>
+                                            <span className="contact-hours__label-text">Mon – Fri</span>
                                         </div>
-                                        <span className="contact-hours__time">{businessInfo.hours.gym}</span>
+                                        <span className="contact-hours__time">{businessInfo.hours.weekdays}</span>
                                     </div>
 
                                     <div className="contact-hours__item">
                                         <div className="contact-hours__label">
-                                            <Coffee className="contact-hours__label-icon contact-hours__label-icon--latte" />
-                                            <span className="contact-hours__label-text">Coffee Bar</span>
+                                            <Dumbbell className="contact-hours__label-icon contact-hours__label-icon--primary" />
+                                            <span className="contact-hours__label-text">Saturday</span>
                                         </div>
-                                        <span className="contact-hours__time">{businessInfo.hours.coffeeBar}</span>
+                                        <span className="contact-hours__time">{businessInfo.hours.saturday}</span>
+                                    </div>
+
+                                    <div className="contact-hours__item">
+                                        <div className="contact-hours__label">
+                                            <Dumbbell className="contact-hours__label-icon contact-hours__label-icon--primary" />
+                                            <span className="contact-hours__label-text">Sunday</span>
+                                        </div>
+                                        <span className="contact-hours__time contact-hours__time--closed">{businessInfo.hours.sunday}</span>
                                     </div>
                                 </div>
 

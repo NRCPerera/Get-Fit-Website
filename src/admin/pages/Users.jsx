@@ -13,7 +13,8 @@ import {
     UserCheck,
     CheckCircle,
     Search,
-    Eye
+    Eye,
+    Edit
 } from 'lucide-react';
 import { cn } from '../utils';
 import { motion } from 'framer-motion';
@@ -64,6 +65,20 @@ const UsersPage = () => {
         experience: '',
         bio: '',
         specializations: []
+    });
+
+    const [editInstructorModalOpen, setEditInstructorModalOpen] = useState(false);
+    const [updatingInstructor, setUpdatingInstructor] = useState(false);
+    const [editInstructorId, setEditInstructorId] = useState(null);
+    const [editInstructorForm, setEditInstructorForm] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        monthlyRate: '',
+        experience: '',
+        bio: '',
+        specializations: [],
+        isAvailable: true
     });
 
     const [userDetailsModalOpen, setUserDetailsModalOpen] = useState(false);
@@ -264,6 +279,86 @@ const UsersPage = () => {
         }));
     };
 
+    const handleEditInstructorClick = (instructor) => {
+        setEditInstructorId(instructor._id);
+        setEditInstructorForm({
+            name: instructor.user?.name || '',
+            email: instructor.user?.email || '',
+            phone: instructor.user?.phone || '',
+            monthlyRate: instructor.monthlyRate || '',
+            experience: instructor.experience || '',
+            bio: instructor.bio || '',
+            specializations: instructor.specializations || [],
+            isAvailable: instructor.isAvailable !== undefined ? instructor.isAvailable : true
+        });
+        setEditInstructorModalOpen(true);
+    };
+
+    const handleEditInstructorFormChange = (e) => {
+        const { name, value, type, checked } = e.target;
+        setEditInstructorForm(prev => ({
+            ...prev,
+            [name]: type === 'checkbox' ? checked : value
+        }));
+    };
+
+    const handleEditSpecializationAdd = (spec) => {
+        if (spec && !editInstructorForm.specializations.includes(spec)) {
+            setEditInstructorForm(prev => ({
+                ...prev,
+                specializations: [...prev.specializations, spec]
+            }));
+        }
+    };
+
+    const handleEditSpecializationRemove = (spec) => {
+        setEditInstructorForm(prev => ({
+            ...prev,
+            specializations: prev.specializations.filter(s => s !== spec)
+        }));
+    };
+
+    const handleUpdateInstructor = async (e) => {
+        e.preventDefault();
+        if (!editInstructorId) return;
+
+        const parsedMonthlyRate = Number(editInstructorForm.monthlyRate);
+        const parsedExperience = Number.parseInt(editInstructorForm.experience, 10);
+
+        if (!editInstructorForm.name.trim() || !editInstructorForm.email.trim()) {
+            alert('Name and email are required');
+            return;
+        }
+
+        if (!Number.isFinite(parsedMonthlyRate) || parsedMonthlyRate <= 0) {
+            alert('Monthly rate must be greater than 0');
+            return;
+        }
+
+        setUpdatingInstructor(true);
+        try {
+            await adminAPI.updateInstructor(editInstructorId, {
+                name: editInstructorForm.name.trim(),
+                email: editInstructorForm.email.trim().toLowerCase(),
+                phone: editInstructorForm.phone.trim(),
+                monthlyRate: parsedMonthlyRate,
+                experience: Number.isFinite(parsedExperience) ? Math.max(0, parsedExperience) : 0,
+                bio: editInstructorForm.bio.trim(),
+                specializations: editInstructorForm.specializations.filter(Boolean),
+                isAvailable: editInstructorForm.isAvailable
+            });
+            alert('Instructor updated successfully!');
+            setEditInstructorModalOpen(false);
+            setEditInstructorId(null);
+            fetchData();
+        } catch (error) {
+            console.error(error);
+            alert(getApiErrorMessage(error, 'Failed to update instructor'));
+        } finally {
+            setUpdatingInstructor(false);
+        }
+    };
+
     const filteredUsers = users.filter(user =>
         searchQuery === '' ||
         user.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -446,7 +541,7 @@ const UsersPage = () => {
                                 Approve
                             </Button>
                         )}
-                        <Button variant="outline" size="sm" fullWidth>Edit Profile</Button>
+                        <Button variant="outline" size="sm" fullWidth icon={Edit} onClick={() => handleEditInstructorClick(instructor)}>Edit Profile</Button>
                         <Button variant="ghost" size="sm" className="admin-delete-btn">
                             <Trash2 size={16} />
                         </Button>
@@ -696,6 +791,134 @@ const UsersPage = () => {
                         <Button variant="secondary" type="button" onClick={() => setCreateInstructorModalOpen(false)}>Cancel</Button>
                         <Button type="submit" disabled={creatingInstructor}>
                             {creatingInstructor ? 'Creating...' : 'Create Instructor'}
+                        </Button>
+                    </div>
+                </form>
+            </Modal>
+
+            {/* Edit Instructor Modal */}
+            <Modal
+                isOpen={editInstructorModalOpen}
+                onClose={() => setEditInstructorModalOpen(false)}
+                title="Edit Instructor"
+            >
+                <form onSubmit={handleUpdateInstructor} className="admin-modal-form">
+                    <div className="admin-form-grid">
+                        <div className="admin-form-group">
+                            <label>Name *</label>
+                            <input
+                                type="text"
+                                name="name"
+                                value={editInstructorForm.name}
+                                onChange={handleEditInstructorFormChange}
+                                className="admin-form-input"
+                                required
+                            />
+                        </div>
+                        <div className="admin-form-group">
+                            <label>Email *</label>
+                            <input
+                                type="email"
+                                name="email"
+                                value={editInstructorForm.email}
+                                onChange={handleEditInstructorFormChange}
+                                className="admin-form-input"
+                                required
+                            />
+                        </div>
+                    </div>
+
+                    <div className="admin-form-grid">
+                        <div className="admin-form-group">
+                            <label>Phone</label>
+                            <input
+                                type="tel"
+                                name="phone"
+                                value={editInstructorForm.phone}
+                                onChange={handleEditInstructorFormChange}
+                                className="admin-form-input"
+                            />
+                        </div>
+                        <div className="admin-form-group">
+                            <label>Monthly Rate (LKR) *</label>
+                            <input
+                                type="number"
+                                name="monthlyRate"
+                                value={editInstructorForm.monthlyRate}
+                                onChange={handleEditInstructorFormChange}
+                                className="admin-form-input"
+                                required
+                                min="1"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="admin-form-grid">
+                        <div className="admin-form-group">
+                            <label>Experience (Years)</label>
+                            <input
+                                type="number"
+                                name="experience"
+                                value={editInstructorForm.experience}
+                                onChange={handleEditInstructorFormChange}
+                                className="admin-form-input"
+                                min="0"
+                            />
+                        </div>
+                        <div className="admin-form-group admin-form-checkbox-group">
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    name="isAvailable"
+                                    checked={editInstructorForm.isAvailable}
+                                    onChange={handleEditInstructorFormChange}
+                                />
+                                Available
+                            </label>
+                        </div>
+                    </div>
+
+                    <div className="admin-form-group">
+                        <label>Specializations</label>
+                        <select
+                            onChange={(e) => {
+                                handleEditSpecializationAdd(e.target.value);
+                                e.target.value = '';
+                            }}
+                            className="admin-select"
+                            defaultValue=""
+                        >
+                            <option value="" disabled>Add specialization...</option>
+                            {specializationOptions.filter(s => !editInstructorForm.specializations.includes(s)).map(s => (
+                                <option key={s} value={s}>{s}</option>
+                            ))}
+                        </select>
+                        <div className="admin-specialization-tags">
+                            {editInstructorForm.specializations.map((spec, i) => (
+                                <span key={i} className="admin-specialization-tag removable">
+                                    {spec}
+                                    <button type="button" onClick={() => handleEditSpecializationRemove(spec)}>×</button>
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="admin-form-group">
+                        <label>Bio</label>
+                        <textarea
+                            name="bio"
+                            value={editInstructorForm.bio}
+                            onChange={handleEditInstructorFormChange}
+                            className="admin-form-textarea"
+                            rows={3}
+                            placeholder="Short bio about the instructor..."
+                        />
+                    </div>
+
+                    <div className="admin-modal-actions">
+                        <Button variant="secondary" type="button" onClick={() => setEditInstructorModalOpen(false)}>Cancel</Button>
+                        <Button type="submit" disabled={updatingInstructor}>
+                            {updatingInstructor ? 'Updating...' : 'Update Instructor'}
                         </Button>
                     </div>
                 </form>

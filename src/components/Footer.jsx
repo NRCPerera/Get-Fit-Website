@@ -1,13 +1,11 @@
 import { Link } from 'react-router-dom';
 import {
     Dumbbell,
-    Coffee,
     MapPin,
     Phone,
     Mail,
     Instagram,
     Facebook,
-    Twitter,
     ArrowUp
 } from 'lucide-react';
 import { businessInfo, navLinks } from '../data/siteData';
@@ -61,15 +59,6 @@ const Footer = () => {
                             >
                                 <Facebook className="footer__social-icon" />
                             </a>
-                            <a
-                                href={businessInfo.socials.twitter}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="footer__social-link"
-                                aria-label="Follow us on Twitter"
-                            >
-                                <Twitter className="footer__social-icon" />
-                            </a>
                         </div>
                     </div>
 
@@ -109,16 +98,23 @@ const Footer = () => {
                             <div className="footer__hours-item">
                                 <div className="footer__hours-label footer__hours-label--gym">
                                     <Dumbbell className="footer__hours-icon" />
-                                    <span className="footer__hours-name">The Gym</span>
+                                    <span className="footer__hours-name">Mon – Fri</span>
                                 </div>
-                                <p className="footer__hours-time">{businessInfo.hours.gym}</p>
+                                <p className="footer__hours-time">{businessInfo.hours.weekdays}</p>
                             </div>
                             <div className="footer__hours-item">
-                                <div className="footer__hours-label footer__hours-label--coffee">
-                                    <Coffee className="footer__hours-icon" />
-                                    <span className="footer__hours-name">Coffee Bar</span>
+                                <div className="footer__hours-label footer__hours-label--gym">
+                                    <Dumbbell className="footer__hours-icon" />
+                                    <span className="footer__hours-name">Saturday</span>
                                 </div>
-                                <p className="footer__hours-time">{businessInfo.hours.coffeeBar}</p>
+                                <p className="footer__hours-time">{businessInfo.hours.saturday}</p>
+                            </div>
+                            <div className="footer__hours-item">
+                                <div className="footer__hours-label footer__hours-label--gym">
+                                    <Dumbbell className="footer__hours-icon" />
+                                    <span className="footer__hours-name">Sunday</span>
+                                </div>
+                                <p className="footer__hours-time footer__hours-time--closed">{businessInfo.hours.sunday}</p>
                             </div>
                         </div>
                     </div>

@@ -7,13 +7,15 @@ export const businessInfo = {
     phone: "076 393 9790",
     email: "info@getfit.lk",
     hours: {
-        gym: "5:00 AM - 11:00 PM",
-        coffeeBar: "6:00 AM - 10:00 PM"
+        gym: "Mon–Fri: 5 AM – 10 PM | Sat: 6 AM – 9 PM",
+        coffeeBar: "Mon–Fri: 5 AM – 10 PM | Sat: 6 AM – 9 PM",
+        weekdays: "5:00 AM - 10:00 PM",
+        saturday: "6:00 AM - 9:00 PM",
+        sunday: "Closed"
     },
     socials: {
-        instagram: "https://instagram.com/getfit",
-        facebook: "https://facebook.com/getfit",
-        twitter: "https://twitter.com/getfit"
+        instagram: "https://www.instagram.com/getfit.lk/?hl=en",
+        facebook: "https://www.facebook.com/p/Get-fit-seeduwa-100063592868365/"
     }
 };
 

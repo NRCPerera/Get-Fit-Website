@@ -42,6 +42,16 @@ export const adminAPI = {
         const res = await apiClient.post(`/admin/instructors/${userId}/approve`);
         return res.data;
     },
+    updateInstructor: async (id, data) => {
+        const res = await apiClient.put(`/admin/instructors/${id}`, data);
+        return res.data;
+    },
+
+    // Instructor Assignments
+    getAllInstructorAssignments: async (params) => {
+        const res = await apiClient.get('/admin/instructor-assignments', { params });
+        return res.data;
+    },
 
     // Payments
     getAllPayments: async (params) => {
