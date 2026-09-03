@@ -627,7 +627,7 @@ export const coffeeMenu = {
             name: "Long Black",
             description: "Double espresso over hot water",
             price: "550",
-            image: "https://images.unsplash.com/photo-1497515114889-1f074bfaab3b?w=200&h=200&fit=crop"
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTESaTE1aVGidt_ousH1JOuNJ1Gx_DC0qE91FCabXdsEw&s=10"
         },
         {
             id: 34,
