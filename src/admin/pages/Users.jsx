@@ -359,6 +359,18 @@ const UsersPage = () => {
         }
     };
 
+    const handleDeleteInstructor = async (instructorId) => {
+        if (!window.confirm('Are you sure you want to delete this instructor? This action cannot be undone.')) return;
+        try {
+            await adminAPI.deleteInstructor(instructorId);
+            setInstructors(prev => prev.filter(i => i._id !== instructorId));
+            alert('Instructor deleted successfully');
+        } catch (error) {
+            console.error(error);
+            alert(getApiErrorMessage(error, 'Failed to delete instructor'));
+        }
+    };
+
     const filteredUsers = users.filter(user =>
         searchQuery === '' ||
         user.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -542,7 +554,7 @@ const UsersPage = () => {
                             </Button>
                         )}
                         <Button variant="outline" size="sm" fullWidth icon={Edit} onClick={() => handleEditInstructorClick(instructor)}>Edit Profile</Button>
-                        <Button variant="ghost" size="sm" className="admin-delete-btn">
+                        <Button variant="ghost" size="sm" className="admin-delete-btn" onClick={() => handleDeleteInstructor(instructor._id)}>
                             <Trash2 size={16} />
                         </Button>
                     </div>

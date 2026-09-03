@@ -170,7 +170,8 @@ const EditExercise = () => {
         );
     }
 
-    const muscleGroupOptions = ['Chest', 'Back', 'Shoulders', 'Biceps', 'Triceps', 'Forearms', 'Core', 'Quadriceps', 'Hamstrings', 'Glutes', 'Calves', 'Full Body'];
+    const muscleGroupOptions = ['chest', 'back', 'legs', 'arms', 'shoulders', 'core', 'full-body'];
+    const formatLabel = (val) => val.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
     const equipmentOptions = ['Barbell', 'Dumbbell', 'Kettlebell', 'Cable Machine', 'Resistance Band', 'Pull-up Bar', 'Bench', 'Exercise Ball', 'Medicine Ball', 'Bodyweight', 'Machine', 'TRX'];
 
     return (
@@ -289,13 +290,13 @@ const EditExercise = () => {
                                 <select onChange={handleMuscleGroupChange} className="admin-select" defaultValue="">
                                     <option value="" disabled>Add muscle group...</option>
                                     {muscleGroupOptions.filter(m => !formData.muscleGroups.includes(m)).map(m => (
-                                        <option key={m} value={m}>{m}</option>
+                                        <option key={m} value={m}>{formatLabel(m)}</option>
                                     ))}
                                 </select>
                                 <div className="admin-tags-container">
                                     {formData.muscleGroups.map((group, idx) => (
                                         <span key={idx} className="admin-tag">
-                                            {group}
+                                            {formatLabel(group)}
                                             <button type="button" onClick={() => removeMuscleGroup(group)}>
                                                 <X size={14} />
                                             </button>

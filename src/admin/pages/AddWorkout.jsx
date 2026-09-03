@@ -157,7 +157,7 @@ const AddWorkout = () => {
 
         try {
             await workoutAPI.createWorkout(formData);
-            navigate('/workouts');
+            navigate('/admin/workouts');
         } catch (error) {
             console.error(error);
             alert('Failed to create workout');

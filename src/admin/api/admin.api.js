@@ -46,6 +46,10 @@ export const adminAPI = {
         const res = await apiClient.put(`/admin/instructors/${id}`, data);
         return res.data;
     },
+    deleteInstructor: async (id) => {
+        const res = await apiClient.delete(`/admin/instructors/${id}`);
+        return res.data;
+    },
 
     // Instructor Assignments
     getAllInstructorAssignments: async (params) => {
