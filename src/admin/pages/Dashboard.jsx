@@ -69,6 +69,7 @@ const Dashboard = () => {
 
     const stats = data?.stats || {};
     const recentActivity = data?.recentActivity || [];
+    const visibleRecentActivity = recentActivity.slice(0, 5);
 
     const quickActions = [
         { label: 'Add User', icon: Users, to: '/admin/users' },
@@ -88,7 +89,6 @@ const Dashboard = () => {
                 <Link to="/admin/notifications" className="admin-notification-btn">
                     <Bell size={16} />
                     <span>Notifications</span>
-                    <span className="admin-notification-badge">3</span>
                 </Link>
             </div>
 
@@ -130,9 +130,9 @@ const Dashboard = () => {
                 <div className="admin-section">
                     <h2 className="admin-section-title">Recent Activity</h2>
                     <div className="admin-activity-card">
-                        {recentActivity.length > 0 ? (
+                        {visibleRecentActivity.length > 0 ? (
                             <div>
-                                {recentActivity.map((activity, idx) => (
+                                {visibleRecentActivity.map((activity, idx) => (
                                     <div key={idx} className="admin-activity-item">
                                         <div
                                             className="admin-activity-icon"
