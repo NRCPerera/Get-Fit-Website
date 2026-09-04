@@ -300,3 +300,204 @@
     color: rgba(255, 255, 255, 0.4);
     font-style: italic;
 }
+
+/* Deallocate Button */
+.admin-deallocate-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #EF4444;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.admin-deallocate-btn:hover {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: rgba(239, 68, 68, 0.5);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.15);
+}
+
+.admin-deallocate-btn:active {
+    transform: translateY(0);
+}
+
+.admin-no-action {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 0.875rem;
+}
+
+/* Deallocate Confirmation Modal */
+.admin-deallocate-modal {
+    max-width: 28rem;
+}
+
+.admin-deallocate-modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+}
+
+.admin-deallocate-warning-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 9999px;
+    background: rgba(239, 68, 68, 0.15);
+    color: #EF4444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-deallocate-message {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #ffffff;
+    line-height: 1.5;
+}
+
+.admin-deallocate-details {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.admin-deallocate-detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-deallocate-detail-label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 500;
+}
+
+.admin-deallocate-detail-value {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.admin-deallocate-note {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.4);
+    line-height: 1.5;
+}
+
+.admin-deallocate-actions {
+    display: flex;
+    gap: 0.75rem;
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.admin-deallocate-cancel-btn {
+    flex: 1;
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.admin-deallocate-cancel-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+}
+
+.admin-deallocate-confirm-btn {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%);
+    border: none;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.admin-deallocate-confirm-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #DC2626 0%, #B91C1C 100%);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+    transform: translateY(-1px);
+}
+
+.admin-deallocate-confirm-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.admin-deallocate-spinner {
+    animation: spin 1s linear infinite;
+}
+
+/* Toast Notification */
+.admin-allocation-toast {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-lg);
+    font-size: 0.875rem;
+    font-weight: 500;
+    position: relative;
+}
+
+.admin-allocation-toast.success {
+    background: rgba(57, 255, 20, 0.1);
+    border: 1px solid rgba(57, 255, 20, 0.25);
+    color: var(--color-accent);
+}
+
+.admin-allocation-toast.error {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.25);
+    color: #EF4444;
+}
+
+.admin-toast-close {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 1.25rem;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+    padding: 0 0.25rem;
+    line-height: 1;
+}
+
+.admin-toast-close:hover {
+    opacity: 1;
+}

@@ -755,3 +755,38 @@
 .admin-user-details-grid .value.inactive {
     color: #EF4444;
 }
+
+/* Avatar Images */
+.admin-user-avatar,
+.admin-instructor-avatar,
+.admin-user-details-avatar {
+    overflow: hidden;
+}
+
+.admin-user-avatar img,
+.admin-instructor-avatar img,
+.admin-user-details-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+    display: block;
+}
+
+/* Profile Photo Upload Styles */
+.admin-photo-upload-single {
+    margin-top: 0.5rem;
+}
+
+.admin-profile-dropzone {
+    padding: 1.25rem 1rem;
+    max-width: 240px;
+}
+
+.admin-profile-preview {
+    max-width: 200px;
+}
+
+.admin-profile-preview img {
+    height: 140px;
+}

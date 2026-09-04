@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { adminAPI } from '../api/admin.api';
 import Card from '../components/common/Card';
 import Button from '../components/common/Button';
+import Modal from '../components/common/Modal';
 import {
     Users,
     UserCheck,
@@ -12,7 +13,9 @@ import {
     CheckCircle,
     Clock,
     XCircle,
-    AlertTriangle
+    AlertTriangle,
+    UserMinus,
+    Loader
 } from 'lucide-react';
 import { cn, formatCurrency } from '../utils';
 import { motion } from 'framer-motion';
@@ -26,9 +29,23 @@ const AllocationsPage = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [stats, setStats] = useState({ total: 0, active: 0, expired: 0, cancelled: 0 });
 
+    // Deallocate modal state
+    const [deallocateModal, setDeallocateModal] = useState(false);
+    const [selectedAllocation, setSelectedAllocation] = useState(null);
+    const [deallocating, setDeallocating] = useState(false);
+    const [toast, setToast] = useState(null);
+
     useEffect(() => {
         loadSubscriptions();
     }, [filter]);
+
+    // Auto-dismiss toast after 4 seconds
+    useEffect(() => {
+        if (toast) {
+            const timer = setTimeout(() => setToast(null), 4000);
+            return () => clearTimeout(timer);
+        }
+    }, [toast]);
 
     const loadSubscriptions = async () => {
         setLoading(true);
@@ -42,6 +59,33 @@ const AllocationsPage = () => {
         } finally {
             setLoading(false);
         }
+    };
+
+    const handleDeallocateClick = (allocation) => {
+        setSelectedAllocation(allocation);
+        setDeallocateModal(true);
+    };
+
+    const handleDeallocateConfirm = async () => {
+        if (!selectedAllocation) return;
+        setDeallocating(true);
+        try {
+            await adminAPI.deallocateInstructor(selectedAllocation._id);
+            setToast({ type: 'success', message: `Successfully deallocated ${selectedAllocation.member?.name || 'member'} from ${selectedAllocation.instructor?.name || 'instructor'}` });
+            setDeallocateModal(false);
+            setSelectedAllocation(null);
+            loadSubscriptions();
+        } catch (error) {
+            const msg = error?.response?.data?.message || 'Failed to deallocate instructor';
+            setToast({ type: 'error', message: msg });
+        } finally {
+            setDeallocating(false);
+        }
+    };
+
+    const handleDeallocateCancel = () => {
+        setDeallocateModal(false);
+        setSelectedAllocation(null);
     };
 
     const getStatusIcon = (status) => {
@@ -92,6 +136,20 @@ const AllocationsPage = () => {
                 </div>
                 <Button variant="ghost" icon={RefreshCw} onClick={loadSubscriptions} />
             </div>
+
+            {/* Toast Notification */}
+            {toast && (
+                <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    className={cn("admin-allocation-toast", toast.type)}
+                >
+                    {toast.type === 'success' ? <CheckCircle size={16} /> : <AlertTriangle size={16} />}
+                    <span>{toast.message}</span>
+                    <button onClick={() => setToast(null)} className="admin-toast-close">×</button>
+                </motion.div>
+            )}
 
             {/* Stats Cards */}
             <div className="admin-allocation-stats-grid">
@@ -194,18 +252,19 @@ const AllocationsPage = () => {
                                 <th>Started</th>
                                 <th>Expires</th>
                                 <th>Payment</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {loading ? (
                                 <tr>
-                                    <td colSpan="7" className="admin-table-loading">
+                                    <td colSpan="8" className="admin-table-loading">
                                         <div className="admin-loading-spinner"></div>
                                     </td>
                                 </tr>
                             ) : filteredSubscriptions.length === 0 ? (
                                 <tr>
-                                    <td colSpan="7" className="admin-table-empty">
+                                    <td colSpan="8" className="admin-table-empty">
                                         <div className="admin-empty-state-icon">
                                             <Users size={24} />
                                         </div>
@@ -294,6 +353,20 @@ const AllocationsPage = () => {
                                                     <span className="admin-no-payment">Free allocation</span>
                                                 )}
                                             </td>
+                                            <td>
+                                                {sub.status === 'active' ? (
+                                                    <button
+                                                        className="admin-deallocate-btn"
+                                                        onClick={() => handleDeallocateClick(sub)}
+                                                        title="Deallocate this instructor from member"
+                                                    >
+                                                        <UserMinus size={14} />
+                                                        Deallocate
+                                                    </button>
+                                                ) : (
+                                                    <span className="admin-no-action">—</span>
+                                                )}
+                                            </td>
                                         </motion.tr>
                                     );
                                 })
@@ -302,6 +375,74 @@ const AllocationsPage = () => {
                     </table>
                 </div>
             </Card>
+
+            {/* Deallocate Confirmation Modal */}
+            <Modal
+                isOpen={deallocateModal}
+                onClose={handleDeallocateCancel}
+                title="Confirm Deallocation"
+                className="admin-deallocate-modal"
+            >
+                <div className="admin-deallocate-modal-body">
+                    <div className="admin-deallocate-warning-icon">
+                        <AlertTriangle size={32} />
+                    </div>
+                    <p className="admin-deallocate-message">
+                        Are you sure you want to deallocate this instructor from the member?
+                    </p>
+                    {selectedAllocation && (
+                        <div className="admin-deallocate-details">
+                            <div className="admin-deallocate-detail-row">
+                                <span className="admin-deallocate-detail-label">Member</span>
+                                <span className="admin-deallocate-detail-value">
+                                    {selectedAllocation.member?.name || 'Unknown'}
+                                </span>
+                            </div>
+                            <div className="admin-deallocate-detail-row">
+                                <span className="admin-deallocate-detail-label">Instructor</span>
+                                <span className="admin-deallocate-detail-value">
+                                    {selectedAllocation.instructor?.name || 'Unknown'}
+                                </span>
+                            </div>
+                            <div className="admin-deallocate-detail-row">
+                                <span className="admin-deallocate-detail-label">Type</span>
+                                <span className={cn("admin-source-badge", selectedAllocation.source)}>
+                                    {selectedAllocation.source === 'allocated' ? 'Free Allocation' : 'Paid Subscription'}
+                                </span>
+                            </div>
+                        </div>
+                    )}
+                    <p className="admin-deallocate-note">
+                        This action will cancel the active assignment. The member will no longer be assigned to this instructor.
+                    </p>
+                    <div className="admin-deallocate-actions">
+                        <button
+                            className="admin-deallocate-cancel-btn"
+                            onClick={handleDeallocateCancel}
+                            disabled={deallocating}
+                        >
+                            Cancel
+                        </button>
+                        <button
+                            className="admin-deallocate-confirm-btn"
+                            onClick={handleDeallocateConfirm}
+                            disabled={deallocating}
+                        >
+                            {deallocating ? (
+                                <>
+                                    <Loader size={14} className="admin-deallocate-spinner" />
+                                    Deallocating...
+                                </>
+                            ) : (
+                                <>
+                                    <UserMinus size={14} />
+                                    Deallocate
+                                </>
+                            )}
+                        </button>
+                    </div>
+                </div>
+            </Modal>
         </div>
     );
 };

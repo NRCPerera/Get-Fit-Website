@@ -56,6 +56,10 @@ export const adminAPI = {
         const res = await apiClient.get('/admin/instructor-assignments', { params });
         return res.data;
     },
+    deallocateInstructor: async (assignmentId) => {
+        const res = await apiClient.delete(`/admin/deallocate-instructor/${assignmentId}`);
+        return res.data;
+    },
 
     // Payments
     getAllPayments: async (params) => {
