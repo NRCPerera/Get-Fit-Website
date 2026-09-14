@@ -223,6 +223,8 @@ const AddWorkout = () => {
                                         <option value="beginner">Beginner</option>
                                         <option value="intermediate">Intermediate</option>
                                         <option value="advanced">Advanced</option>
+                                        <option value="warmup">Warm Up</option>
+                                        <option value="warmdown">Warm Down</option>
                                     </select>
                                 </div>
                                 <div className="input-group">

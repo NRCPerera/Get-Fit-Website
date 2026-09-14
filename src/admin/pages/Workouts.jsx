@@ -84,6 +84,8 @@ const WorkoutsPage = () => {
             case 'beginner': return 'bg-emerald-100 text-emerald-700';
             case 'intermediate': return 'bg-amber-100 text-amber-700';
             case 'advanced': return 'bg-rose-100 text-rose-700';
+            case 'warmup': return 'bg-sky-100 text-sky-700';
+            case 'warmdown': return 'bg-violet-100 text-violet-700';
             default: return 'bg-gray-100 text-gray-700';
         }
     };
@@ -111,16 +113,22 @@ const WorkoutsPage = () => {
                     />
                 </div>
                 <div className="category-filters custom-scrollbar">
-                    {['Beginner', 'Intermediate', 'Advanced'].map((diff) => (
+                    {[
+                        { label: 'Beginner', value: 'beginner' },
+                        { label: 'Intermediate', value: 'intermediate' },
+                        { label: 'Advanced', value: 'advanced' },
+                        { label: 'Warm Up', value: 'warmup' },
+                        { label: 'Warm Down', value: 'warmdown' }
+                    ].map((diff) => (
                         <button
-                            key={diff}
-                            onClick={() => setDifficulty(diff.toLowerCase() === difficulty ? '' : diff.toLowerCase())}
+                            key={diff.value}
+                            onClick={() => setDifficulty(diff.value === difficulty ? '' : diff.value)}
                             className={cn(
                                 "category-btn",
-                                difficulty === diff.toLowerCase() && "active"
+                                difficulty === diff.value && "active"
                             )}
                         >
-                            {diff}
+                            {diff.label}
                         </button>
                     ))}
                 </div>

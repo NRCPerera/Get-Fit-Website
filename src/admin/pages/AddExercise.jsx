@@ -157,7 +157,7 @@ const AddExercise = () => {
                                 <div className="admin-input-group">
                                     <label className="admin-input-label">Difficulty</label>
                                     <select name="difficulty" value={formData.difficulty} onChange={handleChange} className="admin-select">
-                                        {['beginner', 'intermediate', 'advanced'].map(d => <option key={d} value={d}>{d}</option>)}
+                                        {['beginner', 'intermediate', 'advanced', 'warmup', 'warmdown'].map(d => <option key={d} value={d}>{d}</option>)}
                                     </select>
                                 </div>
                             </div>
