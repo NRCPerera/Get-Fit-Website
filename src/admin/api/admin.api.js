@@ -34,8 +34,8 @@ export const adminAPI = {
         const res = await apiClient.get('/admin/instructors');
         return res.data;
     },
-    createInstructor: async (instructorData) => {
-        const res = await apiClient.post('/admin/instructors', instructorData);
+    createInstructor: async (formData) => {
+        const res = await apiClient.post('/admin/instructors', formData);
         return res.data;
     },
     approveInstructor: async (userId) => {

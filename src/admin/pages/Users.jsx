@@ -14,7 +14,9 @@ import {
     CheckCircle,
     Search,
     Eye,
-    Edit
+    Edit,
+    Camera,
+    X
 } from 'lucide-react';
 import { cn } from '../utils';
 import { motion } from 'framer-motion';
@@ -56,6 +58,8 @@ const UsersPage = () => {
 
     const [createInstructorModalOpen, setCreateInstructorModalOpen] = useState(false);
     const [creatingInstructor, setCreatingInstructor] = useState(false);
+    const [profilePhoto, setProfilePhoto] = useState(null);
+    const [profilePhotoPreview, setProfilePhotoPreview] = useState(null);
     const [instructorForm, setInstructorForm] = useState({
         name: '',
         email: '',
@@ -227,16 +231,22 @@ const UsersPage = () => {
 
         setCreatingInstructor(true);
         try {
-            await adminAPI.createInstructor({
-                name: normalizedName,
-                email: normalizedEmail,
-                password: normalizedPassword,
-                phone: normalizedPhone,
-                monthlyRate: parsedMonthlyRate,
-                experience: Number.isFinite(parsedExperience) ? Math.max(0, parsedExperience) : 0,
-                bio: normalizedBio,
-                specializations: instructorForm.specializations.filter(Boolean)
+            const formData = new FormData();
+            formData.append('name', normalizedName);
+            formData.append('email', normalizedEmail);
+            formData.append('password', normalizedPassword);
+            formData.append('phone', normalizedPhone);
+            formData.append('monthlyRate', parsedMonthlyRate);
+            formData.append('experience', Number.isFinite(parsedExperience) ? Math.max(0, parsedExperience) : 0);
+            formData.append('bio', normalizedBio);
+            instructorForm.specializations.filter(Boolean).forEach(spec => {
+                formData.append('specializations', spec);
             });
+            if (profilePhoto) {
+                formData.append('image', profilePhoto);
+            }
+
+            await adminAPI.createInstructor(formData);
             alert('Instructor created successfully!');
             setCreateInstructorModalOpen(false);
             setInstructorForm({
@@ -249,6 +259,8 @@ const UsersPage = () => {
                 bio: '',
                 specializations: []
             });
+            setProfilePhoto(null);
+            setProfilePhotoPreview(null);
             fetchData();
         } catch (error) {
             console.error(error);
@@ -686,6 +698,61 @@ const UsersPage = () => {
                 title="Create New Instructor"
             >
                 <form onSubmit={handleCreateInstructor} className="admin-modal-form">
+                    {/* Profile Photo Upload */}
+                    <div className="admin-photo-upload-section">
+                        <div
+                            className={`admin-photo-dropzone ${profilePhotoPreview ? 'has-photo' : ''}`}
+                            onClick={() => document.getElementById('instructor-photo-input').click()}
+                            onDragOver={(e) => { e.preventDefault(); e.currentTarget.classList.add('dragover'); }}
+                            onDragLeave={(e) => { e.preventDefault(); e.currentTarget.classList.remove('dragover'); }}
+                            onDrop={(e) => {
+                                e.preventDefault();
+                                e.currentTarget.classList.remove('dragover');
+                                const file = e.dataTransfer.files[0];
+                                if (file && file.type.startsWith('image/')) {
+                                    setProfilePhoto(file);
+                                    setProfilePhotoPreview(URL.createObjectURL(file));
+                                }
+                            }}
+                        >
+                            {profilePhotoPreview ? (
+                                <>
+                                    <img src={profilePhotoPreview} alt="Preview" className="admin-photo-preview" />
+                                    <button
+                                        type="button"
+                                        className="admin-photo-remove-btn"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            setProfilePhoto(null);
+                                            setProfilePhotoPreview(null);
+                                        }}
+                                    >
+                                        <X size={14} />
+                                    </button>
+                                </>
+                            ) : (
+                                <div className="admin-photo-placeholder">
+                                    <Camera size={28} />
+                                    <span>Upload Photo</span>
+                                    <span className="admin-photo-hint">Click or drag & drop</span>
+                                </div>
+                            )}
+                        </div>
+                        <input
+                            id="instructor-photo-input"
+                            type="file"
+                            accept="image/jpeg,image/png,image/webp"
+                            style={{ display: 'none' }}
+                            onChange={(e) => {
+                                const file = e.target.files[0];
+                                if (file) {
+                                    setProfilePhoto(file);
+                                    setProfilePhotoPreview(URL.createObjectURL(file));
+                                }
+                            }}
+                        />
+                    </div>
+
                     <div className="admin-form-grid">
                         <div className="admin-form-group">
                             <label>Name *</label>

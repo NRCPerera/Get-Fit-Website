@@ -790,3 +790,99 @@
 .admin-profile-preview img {
     height: 140px;
 }
+
+/* Profile Photo Upload */
+.admin-photo-upload-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.admin-photo-dropzone {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border: 2px dashed rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.admin-photo-dropzone:hover {
+    border-color: var(--color-primary, #6366f1);
+    background: rgba(99, 102, 241, 0.08);
+}
+
+.admin-photo-dropzone.dragover {
+    border-color: var(--color-primary, #6366f1);
+    background: rgba(99, 102, 241, 0.12);
+    transform: scale(1.05);
+}
+
+.admin-photo-dropzone.has-photo {
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.admin-photo-dropzone.has-photo:hover {
+    border-color: var(--color-primary, #6366f1);
+}
+
+.admin-photo-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.admin-photo-placeholder span {
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
+.admin-photo-hint {
+    font-size: 0.6rem !important;
+    color: rgba(255, 255, 255, 0.25) !important;
+    font-weight: 400 !important;
+}
+
+.admin-photo-preview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.admin-photo-remove-btn {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: rgba(239, 68, 68, 0.9);
+    color: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 2;
+}
+
+.admin-photo-dropzone:hover .admin-photo-remove-btn {
+    opacity: 1;
+}
+
+.admin-photo-remove-btn:hover {
+    background: rgba(239, 68, 68, 1);
+    transform: scale(1.1);
+}
