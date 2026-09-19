@@ -74,6 +74,8 @@ const UsersPage = () => {
     const [editInstructorModalOpen, setEditInstructorModalOpen] = useState(false);
     const [updatingInstructor, setUpdatingInstructor] = useState(false);
     const [editInstructorId, setEditInstructorId] = useState(null);
+    const [editProfilePhoto, setEditProfilePhoto] = useState(null);
+    const [editProfilePhotoPreview, setEditProfilePhotoPreview] = useState(null);
     const [editInstructorForm, setEditInstructorForm] = useState({
         name: '',
         email: '',
@@ -293,6 +295,10 @@ const UsersPage = () => {
 
     const handleEditInstructorClick = (instructor) => {
         setEditInstructorId(instructor._id);
+        setEditProfilePhoto(null);
+        setEditProfilePhotoPreview(
+            instructor.user?.profileImage || instructor.profileImage || null
+        );
         setEditInstructorForm({
             name: instructor.user?.name || '',
             email: instructor.user?.email || '',
@@ -349,19 +355,27 @@ const UsersPage = () => {
 
         setUpdatingInstructor(true);
         try {
-            await adminAPI.updateInstructor(editInstructorId, {
-                name: editInstructorForm.name.trim(),
-                email: editInstructorForm.email.trim().toLowerCase(),
-                phone: editInstructorForm.phone.trim(),
-                monthlyRate: parsedMonthlyRate,
-                experience: Number.isFinite(parsedExperience) ? Math.max(0, parsedExperience) : 0,
-                bio: editInstructorForm.bio.trim(),
-                specializations: editInstructorForm.specializations.filter(Boolean),
-                isAvailable: editInstructorForm.isAvailable
+            const formData = new FormData();
+            formData.append('name', editInstructorForm.name.trim());
+            formData.append('email', editInstructorForm.email.trim().toLowerCase());
+            formData.append('phone', editInstructorForm.phone.trim());
+            formData.append('monthlyRate', parsedMonthlyRate);
+            formData.append('experience', Number.isFinite(parsedExperience) ? Math.max(0, parsedExperience) : 0);
+            formData.append('bio', editInstructorForm.bio.trim());
+            editInstructorForm.specializations.filter(Boolean).forEach(spec => {
+                formData.append('specializations', spec);
             });
+            formData.append('isAvailable', editInstructorForm.isAvailable);
+            if (editProfilePhoto) {
+                formData.append('image', editProfilePhoto);
+            }
+
+            await adminAPI.updateInstructor(editInstructorId, formData);
             alert('Instructor updated successfully!');
             setEditInstructorModalOpen(false);
             setEditInstructorId(null);
+            setEditProfilePhoto(null);
+            setEditProfilePhotoPreview(null);
             fetchData();
         } catch (error) {
             console.error(error);
@@ -882,6 +896,61 @@ const UsersPage = () => {
                 title="Edit Instructor"
             >
                 <form onSubmit={handleUpdateInstructor} className="admin-modal-form">
+                    {/* Profile Photo Upload */}
+                    <div className="admin-photo-upload-section">
+                        <div
+                            className={`admin-photo-dropzone ${editProfilePhotoPreview ? 'has-photo' : ''}`}
+                            onClick={() => document.getElementById('edit-instructor-photo-input').click()}
+                            onDragOver={(e) => { e.preventDefault(); e.currentTarget.classList.add('dragover'); }}
+                            onDragLeave={(e) => { e.preventDefault(); e.currentTarget.classList.remove('dragover'); }}
+                            onDrop={(e) => {
+                                e.preventDefault();
+                                e.currentTarget.classList.remove('dragover');
+                                const file = e.dataTransfer.files[0];
+                                if (file && file.type.startsWith('image/')) {
+                                    setEditProfilePhoto(file);
+                                    setEditProfilePhotoPreview(URL.createObjectURL(file));
+                                }
+                            }}
+                        >
+                            {editProfilePhotoPreview ? (
+                                <>
+                                    <img src={editProfilePhotoPreview} alt="Preview" className="admin-photo-preview" />
+                                    <button
+                                        type="button"
+                                        className="admin-photo-remove-btn"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            setEditProfilePhoto(null);
+                                            setEditProfilePhotoPreview(null);
+                                        }}
+                                    >
+                                        <X size={14} />
+                                    </button>
+                                </>
+                            ) : (
+                                <div className="admin-photo-placeholder">
+                                    <Camera size={28} />
+                                    <span>Upload Photo</span>
+                                    <span className="admin-photo-hint">Click or drag & drop</span>
+                                </div>
+                            )}
+                        </div>
+                        <input
+                            id="edit-instructor-photo-input"
+                            type="file"
+                            accept="image/jpeg,image/png,image/webp"
+                            style={{ display: 'none' }}
+                            onChange={(e) => {
+                                const file = e.target.files[0];
+                                if (file) {
+                                    setEditProfilePhoto(file);
+                                    setEditProfilePhotoPreview(URL.createObjectURL(file));
+                                }
+                            }}
+                        />
+                    </div>
+
                     <div className="admin-form-grid">
                         <div className="admin-form-group">
                             <label>Name *</label>
